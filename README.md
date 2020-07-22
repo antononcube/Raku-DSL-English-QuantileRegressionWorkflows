@@ -18,28 +18,20 @@ and
 
 **1.** Install Raku (Perl 6) : https://raku.org/downloads . 
 
-**2.** Install Zef Module Installer : https://github.com/ugexe/zef .
+**2.** Make sure you have Zef Module Installer. 
+ 
+   - Type in `zef --version` in the command line.
+   - Zef Module Installer can be installed from : https://github.com/ugexe/zef .
 
 **3.** Open a command line program. (E.g. Terminal on Mac OS X.)
 
-**4.** Download or clone this repository,
-[ConversationalAgents at GitHub](https://github.com/antononcube/ConversationalAgents). E.g.
+**4.** Run the commands:
 
 ```
-git clone https://github.com/antononcube/ConversationalAgents.git
+zef install https://github.com/antononcube/Raku-DSL-Shared.git
+zef install https://github.com/antononcube/Raku-DSL-English-QuantileRegressionWorkflows.git
 ```
 
-**5.** Go to the directory "ConversationalAgents/Packages/Perl6/DSL::English::QuantileRegressionWorkflows". E.g.
-
-```
-cd ConversationalAgents/Packages/Perl6/DSL::English::QuantileRegressionWorkflows
-```
-
-**6.** Execute the command:
- 
-```
-zef install . --force-install --force-test
-```
 
 ## Examples
 
@@ -48,14 +40,16 @@ Open a Raku IDE or type `raku` in the command line program. Try this Raku code:
 ```raku
 use DSL::English::QuantileRegressionWorkflows;
 
-say to_QRMon_R("compute quantile regression with 16 knots and probabilities 0.25, 0.5 and 0.75");
+say ToQuantileRegressionWorkflowCode(
+    "compute quantile regression with 16 knots and probabilities 0.25, 0.5 and 0.75",
+    "R-QRMon");
 # QRMonQuantileRegression(df = 16, probabilities = c(0.25, 0.5, 0.75))
 ``` 
     
 Here is a more complicated pipeline specification:
 
 ```raku
-say to_QRMon_R(
+say ToQuantileRegressionWorkflowCode(
     "create from dfTemperatureData;
      compute quantile regression with 16 knots and probability 0.5;
      show date list plot with date origin 1900-01-01;
@@ -76,6 +70,13 @@ QRMonEcho( "anomalies finding follows" ) %>%
 QRMonFindAnomaliesByResiduals( threshold = 5) %>%
 QRMonTakeValue
 ```    
+## Versions
+
+The original version of this Raku package was developed/hosted at 
+\[ [AA3](https://github.com/antononcube/ConversationalAgents/tree/master/Packages/Perl6/QuantileRegressionWorkflows) \].
+
+A dedicated GitHub repository was made in order to make the installation with Raku's `zef` more direct. 
+(As shown above.)
 
 ## References
 
@@ -88,3 +89,8 @@ QRMonTakeValue
 [Monadic Quantile Regression Mathematica package](https://github.com/antononcube/MathematicaForPrediction/blob/master/MonadicProgramming/MonadicQuantileRegression.m), 
 (2018),
 [MathematicaForPrediction at GitHub](https://github.com/antononcube/MathematicaForPrediction).
+
+\[AA3\] Anton Antonov,
+[Quantile Regression Workflows](https://github.com/antononcube/ConversationalAgents/tree/master/Packages/Perl6/QuantileRegressionWorkflows),
+(2019),
+[ConversationalAgents at GitHub](https://github.com/antononcube/ConversationalAgents).
