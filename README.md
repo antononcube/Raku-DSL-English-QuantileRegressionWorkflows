@@ -56,7 +56,7 @@ say ToQuantileRegressionWorkflowCode(
      show absolute errors plot;
      echo text anomalies finding follows;
      find anomalies by the threshold 5;
-     take pipeline value;")
+     take pipeline value;", "R-QRMon")
 ```
 
 The command above should print out R code for the R package `QRMon-R`, \[AA1\]:
