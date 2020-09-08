@@ -37,12 +37,11 @@
 use v6;
 use DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases;
 use DSL::Shared::Roles::English::PipelineCommand;
-use DSL::Shared::Roles::English::PipelineCommand;
+use DSL::Shared::Roles::ErrorHandling;
 
 grammar DSL::English::QuantileRegressionWorkflows::Grammar
-        does DSL::Shared::Roles::English::PipelineCommand
         does DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases
-        does DSL::Shared::Roles::English::PipelineCommand {
+        does DSL::Shared::Roles::ErrorHandling {
     # TOP
 
     regex TOP {

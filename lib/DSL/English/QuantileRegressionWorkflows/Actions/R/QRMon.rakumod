@@ -40,10 +40,12 @@
 
 use v6;
 use DSL::English::QuantileRegressionWorkflows::Grammar;
+use DSL::Shared::Actions::English::R::PipelineCommand;
 
 unit module DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon;
 
-class DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon {
+class DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon
+        is DSL::Shared::Actions::English::R::PipelineCommand {
 
   # Top
   method TOP($/) { make $/.values[0].made; }

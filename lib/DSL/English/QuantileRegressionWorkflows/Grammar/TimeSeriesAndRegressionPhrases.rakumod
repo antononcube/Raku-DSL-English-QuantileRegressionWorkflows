@@ -1,11 +1,11 @@
 use v6;
 
-use DSL::Shared::Roles::English::CommonParts;
+use DSL::Shared::Roles::English::PipelineCommand;
 use DSL::Shared::Utilities::FuzzyMatching;
 
 # Time series and regression specific phrases
 role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases
-        does DSL::Shared::Roles::English::CommonParts {
+        does DSL::Shared::Roles::English::PipelineCommand {
 
     # Proto tokens
     token absolute { 'absolute' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'absolute') }> }

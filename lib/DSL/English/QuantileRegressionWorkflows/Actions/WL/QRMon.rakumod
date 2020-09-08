@@ -40,10 +40,12 @@
 
 use v6;
 use DSL::English::QuantileRegressionWorkflows::Grammar;
+use DSL::Shared::Actions::English::WL::PipelineCommand;
 
 unit module DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
-class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon {
+class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
+        is DSL::Shared::Actions::English::WL::PipelineCommand {
 
   # Top
   method TOP($/) { make $/.values[0].made; }
@@ -180,8 +182,8 @@ class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon {
 
   # Pipeline command
   method pipeline-command($/) { make $/.values[0].made; }
-  method take-pipeline-value($/) { make 'QRMonTakeValue'; }
-  method echo-pipeline-value($/) { make 'QRMonEchoValue'; }
+  method take-pipeline-value($/) { make 'QRMonTakeValue[]'; }
+  method echo-pipeline-value($/) { make 'QRMonEchoValue[]'; }
 
   method echo-command($/) { make 'QRMonEcho[ ' ~ $<echo-message-spec>.made ~ ' ]'; }
   method echo-message-spec($/) { make $/.values[0].made; }
