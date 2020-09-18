@@ -4,6 +4,7 @@ use DSL::English::QuantileRegressionWorkflows;
 
 
 my $commands = '
+DSL TARGET WL-QRMon;
 create from tsData; delete missing;
 echo data summary;
 rescale both axes;

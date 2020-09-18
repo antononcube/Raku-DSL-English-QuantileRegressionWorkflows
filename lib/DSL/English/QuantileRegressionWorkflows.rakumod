@@ -14,6 +14,8 @@ interpretation of English natural speech commands that specify Quantile Regressi
 
 unit module DSL::English::QuantileRegressionWorkflows;
 
+use DSL::Shared::Utilities::MetaSpecifications;
+
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon;
 use DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon;
@@ -57,15 +59,21 @@ multi ToQuantileRegressionWorkflowCode ( Str $command where not has-semicolon($c
 
 multi ToQuantileRegressionWorkflowCode ( Str $command where has-semicolon($command), Str $target = 'R-QRMon' ) {
 
-    die 'Unknown target.' unless %targetToAction{$target}:exists;
+    my $specTarget = get-dsl-spec( $command, 'target');
+
+    $specTarget = !$specTarget ?? $target !! $specTarget.value;
+
+    die 'Unknown target.' unless %targetToAction{$specTarget}:exists;
 
     my @commandLines = $command.trim.split(/ ';' \s* /);
 
     @commandLines = grep { $_.Str.chars > 0 }, @commandLines;
 
-    my @cmdLines = map { ToQuantileRegressionWorkflowCode($_, $target) }, @commandLines;
+    my @cmdLines = map { ToQuantileRegressionWorkflowCode($_, $specTarget) }, @commandLines;
 
-    return @cmdLines.join( %targetToSeparator{$target} ).trim;
+    @cmdLines = grep { $_.^name eq 'Str' }, @cmdLines;
+
+    return @cmdLines.join( %targetToSeparator{$specTarget} ).trim;
 }
 
 #-----------------------------------------------------------
