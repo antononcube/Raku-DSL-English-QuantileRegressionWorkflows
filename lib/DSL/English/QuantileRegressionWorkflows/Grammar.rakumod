@@ -57,16 +57,17 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
         <pipeline-command> }
 
     # Load data
-    rule data-load-command { <load-data> | <use-qr-object> }
+    rule data-load-command { <load-data> | <use-qr-object> | <use-dataset> }
     rule data-location-spec { <dataset-name> }
     rule load-data { <.load-data-directive> <data-location-spec> }
     rule use-qr-object { <.use-verb> <.the-determiner>? <.qr-object> <variable-name> }
+    rule use-dataset { <.use-verb> <.the-determiner>? <.dataset> <variable-name> }
 
     # Create command
     rule create-command { <create-by-dataset> }
     rule simple-way-phrase { <in-preposition> <a-determiner> <simple> <way-noun> | <directly-adverb> | <simply-adverb> }
     rule create-simple { <.create-directive> <.a-determiner>? <object> <simple-way-phrase> | <simple> <object> <creation> }
-    rule create-by-dataset { [ <.create-simple> | <.create-directive> ] [ <.by-preposition> | <.with-preposition> | <.from-preposition> ]? <dataset-name> }
+    rule create-by-dataset { [ <.create-simple> | <.create-directive> | <use-directive> ] [ <.by-preposition> | <.with-preposition> | <.from-preposition> ]? <dataset-name> }
 
     # Data transform command
     rule data-transformation-command { <delete-missing> | <rescale-command> | <resample-command> | <moving-func-command> }
