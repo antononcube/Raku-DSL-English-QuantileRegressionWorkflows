@@ -41,46 +41,23 @@
 use v6;
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::Shared::Actions::English::Python::PipelineCommand;
+use DSL::Shared::Actions::Python::CommonStructures;
 
 unit module DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon;
 
 class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
-        is DSL::Shared::Actions::English::Python::PipelineCommand {
+        is DSL::Shared::Actions::English::Python::PipelineCommand
+        is DSL::Shared::Actions::Python::CommonStructures {
 
   # Top
   method TOP($/) { make $/.values[0].made; }
-
-  # General
-  method variable-name($/) { make $/.Str; }
-  method list-separator($/) { make ','; }
-  method integer-value($/) { make $/.Str; }
-  method number-value($/) { make $/.Str; }
-  method percent-value($/) { make $<number-value>.made ~ '/100'; }
-
-  method number-value-list($/) { make '[' ~ $<number-value>>>.made.join(', ') ~ ']'; }
-
-  method r-range-spec($/) { make 'seq' ~ $<number-value-list>.made.substr(1); }
-  method wl-range-spec($/) { make 'seq' ~ $<number-value-list>.made.substr(1); }
-  method r-numeric-list-spec($/) { make $<number-value-list>.made; }
-  method wl-numeric-list-spec($/) { make $<number-value-list>.made; }
-
-  # Range spec
-  method range-spec($/) {
-    if $<range-spec-step> {
-      make 'seq(' ~ $<range-spec-from>.made ~ ', ' ~ $<range-spec-to>.made ~ ', ' ~ $<range-spec-step>.made ~ ')';
-    } else {
-      make 'seq(' ~ $<range-spec-from>.made ~ ', ' ~ $<range-spec-to>.made ~ ')';
-    }
-  }
-  method range-spec-from($/) { make $<number-value>.made; }
-  method range-spec-to($/) { make $<number-value>.made; }
-  method range-spec-step($/) { make $<number-value>.made; }
 
   # Load data
   method data-load-command($/) { make $/.values[0].made; }
   method load-data($/) { make 'obj = QRMonSetData( qrObj = obj, data = ' ~ $<data-location-spec>.made ~ ')'; }
   method data-location-spec($/) { make $<dataset-name>.made; }
-  method use-qr-object($/) { make $<variable-name>.made; }
+  method use-qr-object($/) { make 'obj = ' ~ $<variable-name>.made; }
+  method use-dataset($/) { make 'obj = QRMonUnit(' ~ $<variable-name>.made ~ ')'; }
   method dataset-name($/) { make $/.Str; }
 
   # Create commands

@@ -41,47 +41,23 @@
 use v6;
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::Shared::Actions::English::WL::PipelineCommand;
+use DSL::Shared::Actions::WL::CommonStructures;
 
 unit module DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
 class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
-        is DSL::Shared::Actions::English::WL::PipelineCommand {
+        is DSL::Shared::Actions::English::WL::PipelineCommand
+        is DSL::Shared::Actions::WL::CommonStructures {
 
   # Top
   method TOP($/) { make $/.values[0].made; }
-
-  # General
-  method variable-name($/) { make $/.Str; }
-  method list-separator($/) { make ','; }
-  method integer-value($/) { make $/.Str; }
-  method number-value($/) { make $/.Str; }
-  method percent-value($/) { make $<number-value>.made ~ "/100"; }
-
-  method number-value-list($/) { make '{' ~ $<number-value>>>.made.join(', ') ~ '}'; }
-
-  method r-range-spec($/) { make 'Range[' ~ $<number-value-list>.made.substr(1,*-1) ~ "]"; }
-  method wl-range-spec($/) { make 'Range[' ~ $<number-value-list>.made.substr(1,*-1) ~ "]"; }
-  method r-numeric-list-spec($/) { make $<number-value-list>.made; }
-  method wl-numeric-list-spec($/) { make $<number-value-list>.made; }
-
-  # Range spec
-  method range-spec($/) {
-    if $<range-spec-step> {
-      make 'Range[' ~ $<range-spec-from>.made ~ ', ' ~ $<range-spec-to>.made ~ ', ' ~ $<range-spec-step>.made ~ ']';
-    } else {
-      make 'Range[' ~ $<range-spec-from>.made ~ ', ' ~ $<range-spec-to>.made ~ ']';
-    }
-  }
-
-  method range-spec-from($/) { make $<number-value>.made; }
-  method range-spec-to($/) { make $<number-value>.made; }
-  method range-spec-step($/) { make $<number-value>.made; }
 
   # Load data
   method data-load-command($/) { make $/.values[0].made; }
   method load-data($/) { make 'QRMonSetData[' ~ $<data-location-spec>.made ~ ']'; }
   method data-location-spec($/) { make $<dataset-name>.made; }
   method use-qr-object($/) { make $<variable-name>.made; }
+  method use-dataset($/) { make 'QRMonUnit[' ~ $<variable-name>.made ~ ']'; }
   method dataset-name($/) { make $/.Str; }
 
   # Create commands
