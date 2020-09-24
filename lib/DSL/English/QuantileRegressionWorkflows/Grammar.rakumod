@@ -35,6 +35,7 @@
 =end comment
 
 use v6;
+
 use DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases;
 use DSL::Shared::Roles::English::PipelineCommand;
 use DSL::Shared::Roles::ErrorHandling;
@@ -45,6 +46,7 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
     # TOP
 
     regex TOP {
+        <pipeline-command> |
         <data-load-command> |
         <create-command> |
         <data-transformation-command> |
@@ -53,8 +55,7 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
         <find-outliers-command> |
         <find-anomalies-command> |
         <plot-command> |
-        <plot-errors-command> |
-        <pipeline-command> }
+        <plot-errors-command> }
 
     # Load data
     rule data-load-command { <load-data> | <use-qr-object> | <use-dataset> }
