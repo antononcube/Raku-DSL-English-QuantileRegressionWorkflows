@@ -157,6 +157,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
   method assign-pipeline-object-to($/) { make 'QRMonAssignTo[ ' ~ $/.values[0].made ~ ' ]'; }
 
   ## Value
+  method assign-pipeline-value-to($/) { make 'QRMonAssignValueTo[ ' ~ $/.values[0].made ~ ' ]'; }
   method take-pipeline-value($/) { make 'QRMonTakeValue[]'; }
   method echo-pipeline-value($/) { make 'QRMonEchoValue[]'; }
   method echo-pipeline-funciton-value($/) { make 'QRMonEchoFunctionValue[ ' ~ $<pipeline-function-spec>.made ~ ' ]'; }
