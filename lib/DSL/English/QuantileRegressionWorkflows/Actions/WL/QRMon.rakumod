@@ -41,13 +41,9 @@
 use v6;
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::Shared::Actions::English::WL::PipelineCommand;
-use DSL::Shared::Actions::WL::CommonStructures;
-
-unit module DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
 class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
-        is DSL::Shared::Actions::English::WL::PipelineCommand
-        is DSL::Shared::Actions::WL::CommonStructures {
+        is DSL::Shared::Actions::English::WL::PipelineCommand {
 
   # Top
   method TOP($/) { make $/.values[0].made; }
@@ -156,14 +152,20 @@ class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
     make 'QRMonErrorPlots[ "RelativeErrors" -> ' ~ $err_type ~ ']';
   }
 
-  # Pipeline command
-  method pipeline-command($/) { make $/.values[0].made; }
+  # Pipeline command overwrites
+  ## Object
+  method assign-pipeline-object-to($/) { make 'QRMonAssignTo[ ' ~ $/.values[0].made ~ ' ]'; }
+
+  ## Value
   method take-pipeline-value($/) { make 'QRMonTakeValue[]'; }
   method echo-pipeline-value($/) { make 'QRMonEchoValue[]'; }
+  method echo-pipeline-funciton-value($/) { make 'QRMonEchoFunctionValue[ ' ~ $<pipeline-function-spec>.made ~ ' ]'; }
 
+  ## Context
+  method take-pipeline-context($/) { make 'QRMonTakeContext[]'; }
+  method echo-pipeline-context($/) { make 'QRMonEchoContext[]'; }
+  method echo-pipeline-function-context($/) { make 'QRMonEchoFunctionContext[ ' ~ $<pipeline-function-spec>.made ~ ' ]'; }
+
+  ## Echo messages
   method echo-command($/) { make 'QRMonEcho[ ' ~ $<echo-message-spec>.made ~ ' ]'; }
-  method echo-message-spec($/) { make $/.values[0].made; }
-  method echo-words-list($/) { make '"' ~ $<variable-name>>>.made.join(' ') ~ '"'; }
-  method echo-variable($/) { make $/.Str; }
-  method echo-text($/) { make $/.Str; }
 }
