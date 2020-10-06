@@ -14,7 +14,7 @@ interpretation of English natural speech commands that specify Quantile Regressi
 
 unit module DSL::English::QuantileRegressionWorkflows;
 
-use DSL::Shared::Utilities::MetaSpecifications;
+use DSL::Shared::Utilities::MetaSpecsProcessing;
 
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon;
@@ -61,7 +61,7 @@ multi ToQuantileRegressionWorkflowCode ( Str $command where has-semicolon($comma
 
     my $specTarget = get-dsl-spec( $command, 'target');
 
-    $specTarget = !$specTarget ?? $target !! $specTarget.value;
+    $specTarget = $specTarget ?? $specTarget<DSLTARGET> !! $target;
 
     die 'Unknown target.' unless %targetToAction{$specTarget}:exists;
 
