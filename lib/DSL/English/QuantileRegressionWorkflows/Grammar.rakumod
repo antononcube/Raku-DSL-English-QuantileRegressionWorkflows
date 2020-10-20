@@ -67,7 +67,7 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
     # Create command
     rule create-command { <create-by-dataset> }
     rule simple-way-phrase { <in-preposition> <a-determiner> <simple> <way-noun> | <directly-adverb> | <simply-adverb> }
-    rule create-simple { <.create-directive> <.a-determiner>? <object> <simple-way-phrase> | <simple> <object> <creation> }
+    rule create-simple { <.create-directive> <.a-determiner>? <object-noun> <simple-way-phrase> | <simple> <object-noun> <creation> }
     rule create-by-dataset { [ <.create-simple> | <.create-directive> | <use-directive> ] [ <.by-preposition> | <.with-preposition> | <.from-preposition> ]? <dataset-name> }
 
     # Data transform command
@@ -162,7 +162,7 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
 
     # Plot errors command
     rule plot-errors-command { <plot-errors-with-directive> }
-    rule plot-errors-with-directive { [ <.display-directive> | <.plot-directive> ] <.the-determiner>? <errors-type>? <.errors> <plots>? }
+    rule plot-errors-with-directive { [ <.display-directive> | <.plot-directive> ] <.the-determiner>? <errors-type>? <.errors> <plots-noun>? }
     rule errors-type { <absolute> | <relative> }
 
 }

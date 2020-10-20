@@ -57,7 +57,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     # Rules
     rule least-squares-phrase { <least> <squares> }
     rule quantile-regression-phrase { <quantile> <regression> }
-    rule qr-object { [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object> }
+    rule qr-object { [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object-noun> }
     rule the-outliers { <the-determiner> <outliers> }
     rule value-from-left-phrase { 'value' 'from' 'left' }
 
