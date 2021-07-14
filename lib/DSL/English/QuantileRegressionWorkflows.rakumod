@@ -24,20 +24,26 @@ use DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 my %targetToAction =
     "Python"           => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "Python-QRMon"     => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
+    "Python::QRMon"    => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "R"                => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
     "R-QRMon"          => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
+    "R::QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
     "Mathematica"      => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
     "WL"               => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
-    "WL-QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
+    "WL-QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
+    "WL::QRMon"        => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
 my %targetToSeparator{Str} =
     "R"                => " %>%\n",
     "R-QRMon"          => " %>%\n",
+    "R::QRMon"         => " %>%\n",
     "Mathematica"      => " ==>\n",
     "Python"           => "\n",
     "Python-QRMon"     => "\n",
+    "Python::QRMon"    => "\n",
     "WL"               => " ==>\n",
-    "WL-QRMon"         => " ==>\n";
+    "WL-QRMon"         => " ==>\n",
+    "WL::QRMon"        => " ==>\n";
 
 
 #-----------------------------------------------------------
@@ -46,9 +52,9 @@ sub has-semicolon (Str $word) {
 }
 
 #-----------------------------------------------------------
-proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = "R-QRMon" ) is export {*}
+proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = 'R-QRMon' ) is export {*}
 
-multi ToQuantileRegressionWorkflowCode ( Str $command where not has-semicolon($command), Str $target = "R-QRMon" ) {
+multi ToQuantileRegressionWorkflowCode ( Str $command where not has-semicolon($command), Str $target = 'R-QRMon' ) {
 
     die 'Unknown target.' unless %targetToAction{$target}:exists;
 
