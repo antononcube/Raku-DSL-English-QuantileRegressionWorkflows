@@ -43,9 +43,15 @@ use DSL::Shared::Roles::ErrorHandling;
 grammar DSL::English::QuantileRegressionWorkflows::Grammar
         does DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases
         does DSL::Shared::Roles::ErrorHandling {
-    # TOP
 
-    regex TOP {
+    # TOP
+    rule TOP { <workflow-command> }
+
+    # Workflow commands list
+    rule workflow-commands-list { [ [ <.ws>? <workflow-command> <.ws>? ]+ % <.list-of-commands-separator> ] <.list-of-commands-separator>? }
+
+    # Workflow command
+    rule workflow-command {
         <pipeline-command> |
         <data-load-command> |
         <create-command> |
@@ -54,8 +60,8 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
         <regression-command> |
         <find-outliers-command> |
         <find-anomalies-command> |
-        <plot-command> |
-        <plot-errors-command> }
+        <plot-errors-command> |
+        <plot-command> }
 
     # Load data
     rule data-load-command { <load-data> | <use-qr-object> | <use-dataset> }

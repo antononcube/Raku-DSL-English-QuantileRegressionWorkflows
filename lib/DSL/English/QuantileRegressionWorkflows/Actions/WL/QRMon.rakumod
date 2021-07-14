@@ -48,6 +48,12 @@ class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
   # Top
   method TOP($/) { make $/.values[0].made; }
 
+  # workflow-command-list
+  method workflow-commands-list($/) { make $/.values>>.made.join(" ==>\n"); }
+
+  # workflow-command
+  method workflow-command($/) { make $/.values[0].made; }
+
   # Load data
   method data-load-command($/) { make $/.values[0].made; }
   method load-data($/) { make 'QRMonSetData[' ~ $<data-location-spec>.made ~ ']'; }
