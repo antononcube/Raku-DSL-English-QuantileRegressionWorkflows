@@ -18,7 +18,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token dates { 'dates' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'dates') }> }
     token degree { 'degree' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'degree') }> }
     token error { 'error' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'error') }> }
-    token errors { 'error' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'error') }> | 'errors' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'errors') }> }
+    token errors { 'error' | 'errors' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'errors') }> }
     token fit { 'fit' }
     token fitted { 'fitted' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'fitted') }> }
     token hold-verb { 'hold' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'hold') }> }
