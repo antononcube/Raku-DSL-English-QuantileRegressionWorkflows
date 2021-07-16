@@ -179,10 +179,10 @@ class DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon
 
   # Pipeline command overwrites
   ## Object
-  method assign-pipeline-object-to($/) { make 'function(x) { assign( x = "' ~ $/.values[0].made ~ '", value = x ); x }'; }
+  method assign-pipeline-object-to($/) { make '(function(x) { assign( x = "' ~ $/.values[0].made ~ '", value = x, envir = .GlobalEnv ); x })'; }
 
   ## Value
-  method assign-pipeline-value-to($/) { make 'function(x) { assign( x = "' ~ $/.values[0].made ~ '", value = QRMonTakeValue(x) ); x }'; }
+  method assign-pipeline-value-to($/) { make '(function(x) { assign( x = "' ~ $/.values[0].made ~ '", value = QRMonTakeValue(x), envir = .GlobalEnv ); x })'; }
   method take-pipeline-value($/) { make 'QRMonTakeValue()'; }
   method echo-pipeline-value($/) { make 'QRMonEchoValue()'; }
   method echo-pipeline-funciton-value($/) { make 'QRMonEchoFunctionValue( ' ~ $<pipeline-function-spec>.made ~ ' )'; }
