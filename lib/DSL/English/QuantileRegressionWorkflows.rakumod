@@ -37,7 +37,7 @@ my %targetToSeparator{Str} =
     "R"                => " %>%\n",
     "R-QRMon"          => " %>%\n",
     "R::QRMon"         => " %>%\n",
-    "Mathematica"      => " ==>\n",
+    "Mathematica"      => " \\[DoubleLongRightArrow]\n",
     "Python"           => "\n",
     "Python-QRMon"     => "\n",
     "Python::QRMon"    => "\n",
