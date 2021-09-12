@@ -41,9 +41,9 @@ my %targetToSeparator{Str} =
     "Python"           => "\n",
     "Python-QRMon"     => "\n",
     "Python::QRMon"    => "\n",
-    "WL"               => " ==>\n",
-    "WL-QRMon"         => " ==>\n",
-    "WL::QRMon"        => " ==>\n";
+    "WL"               => " \\[DoubleLongRightArrow]\n",
+    "WL-QRMon"         => " \\[DoubleLongRightArrow]\n",
+    "WL::QRMon"        => " \\[DoubleLongRightArrow]\n";
 
 
 #-----------------------------------------------------------
@@ -79,7 +79,9 @@ multi ToQuantileRegressionWorkflowCode ( Str $command where has-semicolon($comma
 
     @cmdLines = grep { $_.^name eq 'Str' }, @cmdLines;
 
-    return @cmdLines.join( %targetToSeparator{$specTarget} ).trim;
+    my Str $res = @cmdLines.join( %targetToSeparator{$specTarget} ).trim;
+
+    return $res.subst( / ^^ \h* <{ '\'' ~ %targetToSeparator{$specTarget}.trim ~ '\'' }> \h* /, ''):g
 }
 
 #-----------------------------------------------------------
