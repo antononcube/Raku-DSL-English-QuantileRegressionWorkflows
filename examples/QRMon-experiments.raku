@@ -8,14 +8,14 @@ use DSL::English::QuantileRegressionWorkflows::Grammar;
 #-----------------------------------------------------------
 my $pCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
 
-sub qr-parse( Str:D $command, Str:D :$rule = 'TOP' ) {
-        $pCOMMAND.parse($command, :$rule);
+sub qr-parse(Str:D $command, Str:D :$rule = 'TOP') {
+    $pCOMMAND.parse($command, :$rule);
 }
 
-sub qr-interpret( Str:D $command,
-                   Str:D:$rule = 'TOP',
-                   :$actions = DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon.new) {
-        $pCOMMAND.parse( $command, :$rule, :$actions ).made;
+sub qr-interpret(Str:D $command,
+                 Str:D:$rule = 'TOP',
+                 :$actions = DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon.new) {
+    $pCOMMAND.parse($command, :$rule, :$actions).made;
 }
 
 #----------------------------------------------------------
@@ -23,7 +23,8 @@ sub qr-interpret( Str:D $command,
 
 my @commands = ('
 DSL TARGET R-QRMon;
-use object tsData;
+include setup code;
+create from dfTemperatureData;
 delete missing;
 echo data summary;
 rescale both axes;
@@ -33,7 +34,7 @@ plot absolute errors plots;
 compute outliers;
 echo pipeline context;
 assign pipeline object to qrObj34;
-');
+';);
 
 my @targets = ('WL-QRMon');
 
