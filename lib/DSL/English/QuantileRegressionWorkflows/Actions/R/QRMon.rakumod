@@ -188,10 +188,20 @@ class DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon
   method echo-pipeline-funciton-value($/) { make 'QRMonEchoFunctionValue( ' ~ $<pipeline-function-spec>.made ~ ' )'; }
 
   ## Context
-  method take-pipeline-context($/) { make 'QRMonTakeContext()'; }
-  method echo-pipeline-context($/) { make 'QRMonEchoContext()'; }
+  method take-pipeline-context($/) { make '(function(x) { x })'; }
+  method echo-pipeline-context($/) { make '(function(x) { print(x); x })'; }
   method echo-pipeline-function-context($/) { make 'QRMonEchoFunctionContext( ' ~ $<pipeline-function-spec>.made ~ ' )'; }
 
   ## Echo messages
   method echo-command($/) { make 'QRMonEcho( ' ~ $<echo-message-spec>.made ~ ' )'; }
+
+  ## Setup code
+  method setup-code-command($/) {
+    make q:to/SETUPEND/
+      #devtools::install_github(repo = "antononcube/QRMon-R")
+      library(magrittr)
+      library(quantreg)
+      library(QRMon)
+      SETUPEND
+  }
 }

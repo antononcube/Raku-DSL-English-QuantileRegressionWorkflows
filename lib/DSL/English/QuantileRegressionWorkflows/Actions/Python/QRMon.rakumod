@@ -187,4 +187,9 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
   method echo-words-list($/) { make '"' ~ $<variable-name>>>.made.join(' ') ~ '"'; }
   method echo-variable($/) { make $/.Str; }
   method echo-text($/) { make $/.Str; }
+
+  ## Setup code
+  method setup-code-command($/) {
+    make "print(\"Not implemented\")\n";
+  }
 }
