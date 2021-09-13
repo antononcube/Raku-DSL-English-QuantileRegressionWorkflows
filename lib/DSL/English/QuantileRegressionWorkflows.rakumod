@@ -8,20 +8,21 @@ interpretation of English natural speech commands that specify Quantile Regressi
 =head1 Synopsis
 
     use DSL::English::QuantileRegressionWorkflows;
+    my $gcode = ToQuantileRegressionWorkflowCode("compute quantile regression with 0.1 amd 0.9; show outliers");
     my $rcode = to_QRMon_R("compute quantile regression with 0.1 amd 0.9; show outliers");
 
 =end pod
 
 unit module DSL::English::QuantileRegressionWorkflows;
 
-use DSL::Shared::Utilities::MetaSpecsProcessing;
+use DSL::Shared::Utilities::CommandProcessing;
 
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon;
 use DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon;
 use DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
-my %targetToAction =
+my %targetToAction{Str} =
     "Python"           => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "Python-QRMon"     => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "Python::QRMon"    => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
@@ -33,7 +34,7 @@ my %targetToAction =
     "WL-QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
     "WL::QRMon"        => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
-my %targetToSeparator{Str} =
+my Str %targetToSeparator{Str} =
     "R"                => " %>%\n",
     "R-QRMon"          => " %>%\n",
     "R::QRMon"         => " %>%\n",
@@ -47,41 +48,16 @@ my %targetToSeparator{Str} =
 
 
 #-----------------------------------------------------------
-sub has-semicolon (Str $word) {
-    return defined index $word, ';';
-}
-
-#-----------------------------------------------------------
 proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = 'R-QRMon' ) is export {*}
 
-multi ToQuantileRegressionWorkflowCode ( Str $command where not has-semicolon($command), Str $target = 'R-QRMon' ) {
+multi ToQuantileRegressionWorkflowCode( Str $command, Str $target = 'R-QRMon' ) {
 
-    die 'Unknown target.' unless %targetToAction{$target}:exists;
+    DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode($command,
+                                                              grammar => DSL::English::QuantileRegressionWorkflows::Grammar,
+                                                              :%targetToAction,
+                                                              :%targetToSeparator,
+                                                              :$target)
 
-    my $match = DSL::English::QuantileRegressionWorkflows::Grammar.parse($command, actions => %targetToAction{$target} );
-    die 'Cannot parse the given command.' unless $match;
-    return $match.made;
-}
-
-multi ToQuantileRegressionWorkflowCode ( Str $command where has-semicolon($command), Str $target = 'R-QRMon' ) {
-
-    my $specTarget = get-dsl-spec( $command, 'target');
-
-    $specTarget = $specTarget ?? $specTarget<DSLTARGET> !! $target;
-
-    die 'Unknown target.' unless %targetToAction{$specTarget}:exists;
-
-    my @commandLines = $command.trim.split(/ ';' \s* /);
-
-    @commandLines = grep { $_.Str.chars > 0 }, @commandLines;
-
-    my @cmdLines = map { ToQuantileRegressionWorkflowCode($_, $specTarget) }, @commandLines;
-
-    @cmdLines = grep { $_.^name eq 'Str' }, @cmdLines;
-
-    my Str $res = @cmdLines.join( %targetToSeparator{$specTarget} ).trim;
-
-    return $res.subst( / ^^ \h* <{ '\'' ~ %targetToSeparator{$specTarget}.trim ~ '\'' }> \h* /, ''):g
 }
 
 #-----------------------------------------------------------
