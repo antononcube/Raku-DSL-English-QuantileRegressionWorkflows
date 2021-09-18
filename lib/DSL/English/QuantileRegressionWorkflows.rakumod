@@ -48,15 +48,16 @@ my Str %targetToSeparator{Str} =
 
 
 #-----------------------------------------------------------
-proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = 'R-QRMon' ) is export {*}
+proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = 'R-QRMon', | ) is export {*}
 
-multi ToQuantileRegressionWorkflowCode( Str $command, Str $target = 'R-QRMon' ) {
+multi ToQuantileRegressionWorkflowCode( Str $command, Str $target = 'R-QRMon', *%args ) {
 
-    DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode($command,
-                                                              grammar => DSL::English::QuantileRegressionWorkflows::Grammar,
-                                                              :%targetToAction,
-                                                              :%targetToSeparator,
-                                                              :$target)
+    DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode( $command,
+                                                               grammar => DSL::English::QuantileRegressionWorkflows::Grammar,
+                                                               :%targetToAction,
+                                                               :%targetToSeparator,
+                                                               :$target,
+                                                               |%args )
 
 }
 

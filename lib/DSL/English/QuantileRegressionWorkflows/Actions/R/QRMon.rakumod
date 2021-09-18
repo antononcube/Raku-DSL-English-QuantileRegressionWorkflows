@@ -45,6 +45,9 @@ use DSL::Shared::Actions::English::R::PipelineCommand;
 class DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon
         is DSL::Shared::Actions::English::R::PipelineCommand {
 
+  # Separator
+  method separator() { " %>%\n" }
+
   # Top
   method TOP($/) { make $/.values[0].made; }
 
@@ -197,7 +200,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon
 
   ## Setup code
   method setup-code-command($/) {
-    make q:to/SETUPEND/
+    make 'SETUPCODE' => q:to/SETUPEND/
       #devtools::install_github(repo = "antononcube/QRMon-R")
       library(magrittr)
       library(quantreg)

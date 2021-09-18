@@ -190,6 +190,6 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
 
   ## Setup code
   method setup-code-command($/) {
-    make "print(\"Not implemented\")\n";
+    make 'SETUPCODE' => "print(\"Not implemented\")\n";
   }
 }
