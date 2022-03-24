@@ -116,7 +116,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard
   method find-anomalies-command($/) { make $/.values[0].made; }
 
   method find-anomalies-by-residuals-threshold($/) { make 'намери аномалии чрез използване на остатъци с прага: ' ~ $<number-value>.made ~ ')'; }
-  method find-anomalies-by-residuals-outliers($/) { make 'намири аномалии чрез използване на остатъци с детектора: ' ~ $<variable-name>.made ~ ')'; }
+  method find-anomalies-by-residuals-outliers($/) { make 'намери аномалии чрез използване на остатъци с детектора: ' ~ $<variable-name>.made ~ ')'; }
 
   # Plot command
   method plot-command($/) {
