@@ -1,7 +1,7 @@
-use v6;
-use Test;
-use lib 'lib';
+
 use DSL::English::QuantileRegressionWorkflows;
+
+use Test;
 
 plan 15;
 

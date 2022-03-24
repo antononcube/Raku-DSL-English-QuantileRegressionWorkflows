@@ -1,7 +1,7 @@
-use Test;
-use lib '../lib';
-use lib './lib';
+
 use DSL::English::QuantileRegressionWorkflows::Grammar;
+
+use Test;
 
 plan 12;
 
