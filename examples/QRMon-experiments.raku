@@ -35,7 +35,8 @@ echo pipeline context;
 assign pipeline object to qrObj34;
 ';);
 
-my @targets = <Python-QRMon R-QRMon WL-QRMon Bulgarian>;
+#my @targets = <Python-QRMon R-QRMon WL-QRMon Bulgarian>;
+my @targets = <Bulgarian English>;
 
 for @commands -> $c {
     say "\n", '=' x 20;

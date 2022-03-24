@@ -19,12 +19,14 @@ use DSL::Shared::Utilities::CommandProcessing;
 
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard;
+use DSL::English::QuantileRegressionWorkflows::Actions::English::Standard;
 use DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon;
 use DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon;
 use DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
 my %targetToAction{Str} =
     "Bulgarian"        => DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard,
+    "English"          => DSL::English::QuantileRegressionWorkflows::Actions::English::Standard,
     "Python"           => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "Python-QRMon"     => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "Python::QRMon"    => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
@@ -38,6 +40,7 @@ my %targetToAction{Str} =
 
 my Str %targetToSeparator{Str} =
     "Bulgarian"        => "\n",
+    "English"          => "\n",
     "R"                => " %>%\n",
     "R-QRMon"          => " %>%\n",
     "R::QRMon"         => " %>%\n",

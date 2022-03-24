@@ -13,6 +13,7 @@
   "provides": {
     "DSL::English::QuantileRegressionWorkflows": "lib/DSL/English/QuantileRegressionWorkflows.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Bulgarian/Standard.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Actions::English::Standard": "lib/DSL/English/QuantileRegressionWorkflows/Actions/English/Standard.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Python/QRMon.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/R/QRMon.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/WL/QRMon.rakumod",
