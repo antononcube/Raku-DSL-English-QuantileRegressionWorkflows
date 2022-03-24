@@ -18,7 +18,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard
 
   # Load data
   method data-load-command($/) { make $/.values[0].made; }
-  method load-data($/) { make 'присвои данните: ' ~ $<data-location-spec>.made; }
+  method load-data($/) { make 'зареди данните: ' ~ $<data-location-spec>.made; }
   method data-location-spec($/) { make $<dataset-name>.made; }
   method use-qr-object($/) { make $<variable-name>.made; }
   method use-dataset($/) { make 'създай обект за квантилна регресия с: ' ~ $<variable-name>.made; }
