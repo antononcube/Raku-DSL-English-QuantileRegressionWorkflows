@@ -29,37 +29,46 @@ my %targetToAction{Str} =
     "English"          => DSL::English::QuantileRegressionWorkflows::Actions::English::Standard,
     "Python"           => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "Python-QRMon"     => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
-    "Python::QRMon"    => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "R"                => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
     "R-QRMon"          => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
-    "R::QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
     "Mathematica"      => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
     "WL"               => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
-    "WL-QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
-    "WL::QRMon"        => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
+    "WL-QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
+
+my %targetToAction2{Str} = %targetToAction.grep({ $_.key.contains('-') }).map({ $_.key.subst('-', '::') => $_.value }).Hash;
+%targetToAction = |%targetToAction , |%targetToAction2;
 
 my Str %targetToSeparator{Str} =
     "Bulgarian"        => "\n",
     "English"          => "\n",
     "R"                => " %>%\n",
     "R-QRMon"          => " %>%\n",
-    "R::QRMon"         => " %>%\n",
     "Mathematica"      => " \\[DoubleLongRightArrow]\n",
     "Python"           => "\n",
     "Python-QRMon"     => "\n",
-    "Python::QRMon"    => "\n",
     "WL"               => " \\[DoubleLongRightArrow]\n",
-    "WL-QRMon"         => " \\[DoubleLongRightArrow]\n",
-    "WL::QRMon"        => " \\[DoubleLongRightArrow]\n";
+    "WL-QRMon"         => " \\[DoubleLongRightArrow]\n";
 
+my Str %targetToSeparator2{Str} = %targetToSeparator.grep({ $_.key.contains('-') }).map({ $_.key.subst('-', '::') => $_.value }).Hash;
+%targetToSeparator = |%targetToSeparator , |%targetToSeparator2;
 
 #-----------------------------------------------------------
 proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = 'R-QRMon', | ) is export {*}
 
 multi ToQuantileRegressionWorkflowCode( Str $command, Str $target = 'R-QRMon', *%args ) {
 
+    my $lang = %args<language>:exists ?? %args<language> !! 'English';
+    $lang = $lang.wordcase;
+
+    my $gname = "DSL::{$lang}::QuantileRegressionWorkflows::Grammar";
+
+    try require ::($gname);
+    if ::($gname) ~~ Failure { die "Failed to load the grammar $gname." }
+
+    my Grammar $grammar = ::($gname);
+
     DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode( $command,
-                                                               grammar => DSL::English::QuantileRegressionWorkflows::Grammar,
+                                                               :$grammar,
                                                                :%targetToAction,
                                                                :%targetToSeparator,
                                                                :$target,
