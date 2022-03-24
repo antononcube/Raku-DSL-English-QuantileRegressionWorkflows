@@ -16,6 +16,7 @@
     "DSL::English::QuantileRegressionWorkflows::Actions::English::Standard": "lib/DSL/English/QuantileRegressionWorkflows/Actions/English/Standard.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Python/QRMon.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/R/QRMon.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Actions::Russian::Standard": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Russian/Standard.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/WL/QRMon.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Grammar": "lib/DSL/English/QuantileRegressionWorkflows/Grammar.rakumod",
     "DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases": "lib/DSL/English/QuantileRegressionWorkflows/Grammar/TimeSeriesAndRegressionPhrases.rakumod"
