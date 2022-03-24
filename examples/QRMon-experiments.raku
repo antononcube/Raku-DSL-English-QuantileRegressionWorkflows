@@ -22,7 +22,6 @@ sub qr-interpret(Str:D $command,
 
 
 my @commands = ('
-DSL TARGET R-QRMon;
 include setup code;
 create from dfTemperatureData;
 delete missing;
@@ -36,7 +35,7 @@ echo pipeline context;
 assign pipeline object to qrObj34;
 ';);
 
-my @targets = ('WL-QRMon');
+my @targets = <Python-QRMon R-QRMon WL-QRMon Bulgarian>;
 
 for @commands -> $c {
     say "\n", '=' x 20;
@@ -45,7 +44,7 @@ for @commands -> $c {
         say '-' x 20;
         say $t.trim;
         say '-' x 20;
-        say ToQuantileRegressionWorkflowCode($c, $t);
+        say ToQuantileRegressionWorkflowCode($c, $t, format => 'hash');
     }
 }
 

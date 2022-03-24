@@ -1,26 +1,26 @@
 {
-  "perl": "6.d",
   "name": "DSL::English::QuantileRegressionWorkflows",
-  "api": "1",
-  "auth": "github:antononcube",
-  "version": "0.8.0",
   "description": "Quantile Regression workflows building by natural language commands.",
+  "version": "0.8.0",
+  "perl": "6.d",
   "authors": [
     "Anton Antonov"
   ],
-  "license": "GPL-3.0-or-later",
-  "provides": {
-    "DSL::English::QuantileRegressionWorkflows": "lib/DSL/English/QuantileRegressionWorkflows.rakumod",
-    "DSL::English::QuantileRegressionWorkflows::Grammar": "lib/DSL/English/QuantileRegressionWorkflows/Grammar.rakumod",
-    "DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases": "lib/DSL/English/QuantileRegressionWorkflows/Grammar/TimeSeriesAndRegressionPhrases.rakumod",
-    "DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Python/QRMon.rakumod",
-    "DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/R/QRMon.rakumod",
-    "DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/WL/QRMon.rakumod"
-  },
+  "auth": "github:antononcube",
   "depends": [],
   "build-depends": [],
   "test-depends": [],
+  "provides": {
+    "DSL::English::QuantileRegressionWorkflows": "lib/DSL/English/QuantileRegressionWorkflows.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Bulgarian/Standard.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/Python/QRMon.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/R/QRMon.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon": "lib/DSL/English/QuantileRegressionWorkflows/Actions/WL/QRMon.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Grammar": "lib/DSL/English/QuantileRegressionWorkflows/Grammar.rakumod",
+    "DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegressionPhrases": "lib/DSL/English/QuantileRegressionWorkflows/Grammar/TimeSeriesAndRegressionPhrases.rakumod"
+  },
   "resources": [],
+  "license": "GPL-3.0-or-later",
   "tags": [
     "Quantile regression",
     "Quantile",
@@ -31,5 +31,6 @@
     "Workflow",
     "Pipeline"
   ],
+  "api": "1",
   "source-url": "https://github.com/antononcube/Raku-DSL-English-QuantileRegressionWorkflows.git"
 }
