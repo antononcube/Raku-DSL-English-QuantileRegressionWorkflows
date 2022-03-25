@@ -84,7 +84,7 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
     rule rescale-command { <rescale-axis> | <rescale-both-axes> }
     rule rescale-axis { <.rescale-directive> <.the-determiner>? <axis-spec> <.axis-noun> }
     rule axis-spec { <regressor-axis-spec> | <value-axis-spec> }
-    rule regressor-axis-spec { <x-symbol> | <time-noun> | <regressor> }
+    rule regressor-axis-spec { <x-symbol> | <time-noun> | <regressor-noun> }
     rule value-axis-spec { <y-symbol> | <value-noun> }
     rule rescale-both-axes { <rescale-directive> [ <the-determiner> | <both-determiner> ]? <axes-noun> }
 
@@ -93,11 +93,11 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
     rule default-sampling-step { [ <smallest> <difference> | <default> | <automatic> ] <step-noun> }
     rule resampling-method-spec { <resampling-method> | <resampling-method-name> }
     rule resampling-method { 'LinearInterpolation' | 'HoldValueFromLeft' }
-    rule resampling-method-name { <linear> <interpolation> | <hold-verb> <value-from-left-phrase> }
+    rule resampling-method-name { <linear-adjective> <interpolation-noun> | <hold-verb> <value-from-left-phrase> }
 
     rule moving-func-command { [ <.compute-directive>? <moving-func-spec> <.using-preposition> ] [ <number-value> <elements>? | <the-determiner>? <weights>? <number-value-list> <weights>? ] }
-    rule moving-func-name { <moving> [ <average> | <median> | 'Mean' | 'Median' ] }
-    rule moving-map-func { [<moving> <map-noun>] <wl-expr>}
+    rule moving-func-name { <moving-adjective> [ <average-adjective> | <median-noun> | 'Mean' | 'Median' ] }
+    rule moving-map-func { [<moving-adjective> <map-noun>] <wl-expr>}
     rule moving-func-spec { <moving-func-name> | <moving-map-func> }
 
     # Data statistics command
@@ -107,7 +107,7 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
     # Regression command
     rule regression-command { [ <.compute-directive> | <.compute-and-display> | <.do-verb> ] <quantile-regression-spec> }
     rule quantile-regression-phrase-ext { <quantile-regression-phrase> | 'QuantileRegression' }
-    rule quantile-regression-preamble { <a-determiner>? <quantile-regression-phrase-ext> <fit>? }
+    rule quantile-regression-preamble { <a-determiner>? <quantile-regression-phrase-ext> <fit-noun>? }
     rule quantile-regression-spec { <quantile-regression-spec-full> | <quantile-regression-spec-simple> }
     rule quantile-regression-spec-simple { <quantile-regression-preamble> }
     rule quantile-regression-spec-full { <.quantile-regression-preamble> [ <.using-preposition> | <.for-preposition> ] <quantile-regression-spec-element-list> }
@@ -118,57 +118,57 @@ grammar DSL::English::QuantileRegressionWorkflows::Grammar
 
     # QR element - list of probabilities.
     rule probabilities-spec-subcommand { <.the-determiner>? [ <.probabilities-list-phrase> <probabilities-spec> | <probabilities-spec> <.probabilities-list-phrase>? ] }
-    rule probabilities-list-phrase { <probabilities> | <probability> <list-noun>? | <probability> }
+    rule probabilities-list-phrase { <probabilities-noun> | <probability-noun> <list-noun>? | <probability-noun> }
     rule probabilities-spec { <number-value-list> | <range-spec> | <r-range-spec> | <wl-range-spec> }
 
     # QR element -- knots.
     rule knots-spec-subcommand { <.knots-phrase> <knots-spec> | <knots-spec> <.knots-phrase> }
-    rule knots-phrase { <the-determiner>? <knots> }
+    rule knots-phrase { <the-determiner>? <knots-noun> }
     rule knots-spec { <integer-value> | <number-value-list> | <range-spec> }
 
     # QR element -- interpolation order.
     rule interpolation-order-spec-subcommand { <.interpolation-order-phrase> <interpolation-order-spec> | <interpolation-order-spec> <.interpolation-order-phrase> }
-    rule interpolation-order-phrase { <interpolation> [ <order> | <degree> ] }
+    rule interpolation-order-phrase { <interpolation-noun> [ <order-noun> | <degree-noun> ] }
     rule interpolation-order-spec { <integer-value> }
 
     # Find outliers command
     rule find-outliers-command { <find-type-outliers> | <find-outliers-spec> | <find-outliers-simple> }
-    rule outliers-phrase { <the-determiner>? <data>? <outliers> }
+    rule outliers-phrase { <the-determiner>? <data>? <outliers-noun> }
     rule find-outliers-simple { <compute-and-display> <.outliers-phrase> }
 
     rule outlier-type { [ <.the-determiner>? <.data>? ] [ <top-noun> | <bottom-noun> ] }
 
-    rule the-quantile { <the-determiner>? <quantile> }
-    rule the-quantiles { <the-determiner>? <quantiles> }
+    rule the-quantile { <the-determiner>? <quantile-noun> }
+    rule the-quantiles { <the-determiner>? <quantiles-noun> }
 
-    rule the-probability { <the-determiner>? <probability> }
-    rule the-probabilities { <the-determiner>? <probabilities> }
+    rule the-probability { <the-determiner>? <probability-noun> }
+    rule the-probabilities { <the-determiner>? <probabilities-noun> }
 
     rule find-type-outliers { <compute-and-display> <outlier-type> <.outliers-phrase> [ <.with-preposition> [ <probabilities-spec-subcommand> | <probabilities-spec-subcommand> ] ]? }
     rule find-outliers-spec { <compute-and-display> <.outliers-phrase> <.with-preposition> [ <probabilities-spec-subcommand> | <probabilities-spec-subcommand> ] }
 
     # Find anomalies command
     rule find-anomalies-command { <find-anomalies-by-residuals-threshold> | <find-anomalies-by-residuals-outliers> }
-    rule find-anomalies-by-residuals-preamble { <.compute-directive> <.anomalies> [ <.by-preposition> <.residuals> ]? }
+    rule find-anomalies-by-residuals-preamble { <.compute-directive> <.anomalies-noun> [ <.by-preposition> <.residuals-noun> ]? }
     rule find-anomalies-by-residuals-threshold { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? <.threshold> <number-value> }
-    rule find-anomalies-by-residuals-outliers { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? [ <.outlier> <.identifier> <variable-name> | <variable-name> <.outlier> <.identifier> ]}
+    rule find-anomalies-by-residuals-outliers { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? [ <.outlier-noun> <.identifier> <variable-name> | <variable-name> <.outlier-noun> <.identifier> ]}
 
     # Plot command
     rule plot-command { <.display-directive> <plot-elements-list>? [ <date-list-diagram> | <diagram> ] | <diagram> };
     rule plot-elements-list { [ <diagram-type> | <data> ]+  % <list-separator> }
-    rule diagram-type { <regression-curve-spec> | <error> | <outliers> };
-    rule regression-curve-spec { <fitted>? [ <regression-function> | <regression-function-name> ] [ <curve> | <curves> | <function> | <functions> ]? }
-    rule date-list-phrase { [ <date> | <dates> ]  <list-noun>? }
-    rule date-list-diagram { [ <date-list-phrase> <diagram> | <diagram> [ <with-preposition> [ <dates> | <date> <axis-noun> ] ] ] [ <.with-preposition>? <date-origin> ]? }
-    rule date-origin { [<date> <origin>] <date-spec> }
+    rule diagram-type { <regression-curve-spec> | <error-noun> | <outliers-noun> };
+    rule regression-curve-spec { <fitted-adjective>? [ <regression-function> | <regression-function-name> ] [ <curve-noun> | <curves-noun> | <function> | <functions> ]? }
+    rule date-list-phrase { [ <date-noun> | <dates-noun> ]  <list-noun>? }
+    rule date-list-diagram { [ <date-list-phrase> <diagram> | <diagram> [ <with-preposition> [ <dates-noun> | <date-noun> <axis-noun> ] ] ] [ <.with-preposition>? <date-origin> ]? }
+    rule date-origin { [<date-noun> <origin-noun>] <date-spec> }
 
     rule regression-function-list { [ <regression-function> | <regression-function-name> ]+ % <list-separator> }
     rule regression-function { 'QuantileRegression' | 'QuantileRegressionFit' | 'LeastSquares' }
-    rule regression-function-name { <quantile> [<regression>]? | <least-squares-phrase> [<regression>]? }
+    rule regression-function-name { <quantile-noun> [<regression-noun>]? | <least-squares-phrase> [<regression-noun>]? }
 
     # Plot errors command
     rule plot-errors-command { <plot-errors-with-directive> }
-    rule plot-errors-with-directive { [ <.display-directive> | <.plot-directive> ] <.the-determiner>? <errors-type>? <.errors> <plots-noun>? }
-    rule errors-type { <absolute> | <relative> }
+    rule plot-errors-with-directive { [ <.display-directive> | <.plot-directive> ] <.the-determiner>? <errors-type>? <.errors-noun> <plots-noun>? }
+    rule errors-type { <absolute-adjective> | <relative-adjective> }
 
 }

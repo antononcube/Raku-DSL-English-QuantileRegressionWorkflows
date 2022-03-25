@@ -8,44 +8,44 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
         does DSL::Shared::Roles::English::PipelineCommand {
 
     # Proto tokens
-    token absolute { 'absolute' }
-    token anomalies { 'anomalies' }
-    token anomaly { 'anomaly' }
-    token average { 'average' | 'mean' }
-    token curve { 'curve' }
-    token curves { 'curves' }
-    token date { 'date' }
-    token dates { 'dates' }
-    token degree { 'degree' }
-    token error { 'error' }
-    token errors { 'error' | 'errors' }
-    token fit { 'fit' | 'fitting' }
-    token fitted { 'fitted' }
+    token absolute-adjective { 'absolute' }
+    token anomalies-noun { 'anomalies' }
+    token anomaly-noun { 'anomaly' }
+    token average-adjective { 'average' | 'mean' }
+    token curve-noun { 'curve' }
+    token curves-noun { 'curves' }
+    token date-noun { 'date' }
+    token dates-noun { 'dates' }
+    token degree-noun { 'degree' }
+    token error-noun { 'error' }
+    token errors-noun { 'error' | 'errors' }
+    token fit-noun { 'fit' | 'fitting' }
+    token fitted-adjective { 'fitted' }
     token hold-verb { 'hold' }
     token identifier { 'identifier' }
     token ingest { 'ingest' | 'load' | 'use' | 'get' }
-    token interpolation { 'interpolation' }
-    token knots { 'knots' }
-    token least { 'least' }
-    token linear { 'linear' }
+    token interpolation-noun { 'interpolation' }
+    token knots-noun { 'knots' }
+    token least-adjective { 'least' }
+    token linear-adjective { 'linear' }
     token map-noun { 'map' }
-    token mean { 'mean' }
-    token median { 'median' }
-    token moving { 'moving' }
-    token order { 'order'  }
-    token origin { 'origin' }
-    token outlier { 'outlier' }
-    token outliers { 'outliers' | 'outlier' }
-    token probabilities { 'probabilities' }
-    token probability { 'probability' }
-    token quantile { 'quantile' }
-    token quantiles { 'quantiles' }
-    token regressand { 'regressand' }
-    token regression { 'regression' }
-    token regressor { 'regressor' }
-    token relative { 'relative' }
-    token residuals { 'residuals' }
-    token squares { 'squares' }
+    token mean-noun { 'mean' }
+    token median-noun { 'median' }
+    token moving-adjective { 'moving' }
+    token order-noun { 'order'  }
+    token origin-noun { 'origin' }
+    token outlier-noun { 'outlier' }
+    token outliers-noun { 'outliers' | 'outlier' }
+    token probabilities-noun { 'probabilities' }
+    token probability-noun { 'probability' }
+    token quantile-noun { 'quantile' }
+    token quantiles-noun { 'quantiles' }
+    token regressand-noun { 'regressand' }
+    token regression-noun { 'regression' }
+    token regressor-noun { 'regressor' }
+    token relative-adjective { 'relative' }
+    token residuals-noun { 'residuals' }
+    token squares-noun { 'squares' }
     token threshold { 'threshold' }
     token x-symbol { 'x' | 'X' }
     token y-symbol { 'y' | 'Y' }
@@ -55,10 +55,10 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token rescale-directive { 'rescale' }
 
     # Rules
-    rule least-squares-phrase { <least> <squares> }
-    rule quantile-regression-phrase { <quantile> <regression> }
+    rule least-squares-phrase { <least-adjective> <squares-noun> }
+    rule quantile-regression-phrase { <quantile-noun> <regression-noun> }
     rule qr-object { [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object-noun> }
-    rule the-outliers { <the-determiner> <outliers> }
+    rule the-outliers { <the-determiner> <outliers-noun> }
     rule value-from-left-phrase { 'value' 'from' 'left' }
 
     rule time-axis-phrase { <time-noun> <axis-noun> }
