@@ -60,8 +60,8 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token hold-verb {*}
     token hold-verb:sym<English> { :i 'hold' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'hold', 2) }> }
 
-    proto token ingest {*}
-    token ingest:sym<English> { :i 'ingest' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'ingest', 2) }> | 'load' | 'use' | 'get' }
+    proto token interpolation-adjective {*}
+    token interpolation-adjective:sym<English> { :i  <interpolation-noun>  }
 
     proto token interpolation-noun {*}
     token interpolation-noun:sym<English> { :i 'interpolation' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'interpolation', 2) }> }
@@ -78,8 +78,14 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token map-noun {*}
     token map-noun:sym<English> { :i 'map' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'map', 1) }> }
 
+    proto token mean-adjective {*}
+    token mean-adjective:sym<English> { :i  <mean-noun>  }
+
     proto token mean-noun {*}
     token mean-noun:sym<English> { :i 'mean' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'mean', 2) }> }
+
+    proto token median-adjective {*}
+    token median-adjective:sym<English> { :i  <median-noun>  }
 
     proto token median-noun {*}
     token median-noun:sym<English> { :i 'median' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'median', 2) }> }

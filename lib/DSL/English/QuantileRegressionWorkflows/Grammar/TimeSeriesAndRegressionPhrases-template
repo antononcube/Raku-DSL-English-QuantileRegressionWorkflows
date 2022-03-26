@@ -25,12 +25,15 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token fit-noun { 'fit' | 'fitting' }
     token fitted-adjective { 'fitted' }
     token hold-verb { 'hold' }
+    token interpolation-adjective { <interpolation-noun> }
     token interpolation-noun { 'interpolation' }
     token knots-noun { 'knots' }
     token least-adjective { 'least' }
     token linear-adjective { 'linear' }
     token map-noun { 'map' }
+    token mean-adjective { <mean-noun> }
     token mean-noun { 'mean' }
+    token median-adjective { <median-noun> }
     token median-noun { 'median' }
     token moving-adjective { 'moving' }
     token order-noun { 'order'  }
