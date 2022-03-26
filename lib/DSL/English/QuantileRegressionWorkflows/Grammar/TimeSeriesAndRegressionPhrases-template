@@ -50,7 +50,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token relative-adjective { 'relative' }
     token residuals-noun { 'residuals' }
     token squares-noun { 'squares' }
-    token threshold { 'threshold' }
     token x-symbol { 'x' | 'X' }
     token y-symbol { 'y' | 'Y' }
 

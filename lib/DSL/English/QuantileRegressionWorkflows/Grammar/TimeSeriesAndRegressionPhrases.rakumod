@@ -135,9 +135,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token squares-noun {*}
     token squares-noun:sym<English> { :i 'squares' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'squares', 2) }> }
 
-    proto token threshold {*}
-    token threshold:sym<English> { :i 'threshold' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'threshold', 2) }> }
-
     proto token x-symbol {*}
     token x-symbol:sym<English> { :i 'x' | 'X' }
 
