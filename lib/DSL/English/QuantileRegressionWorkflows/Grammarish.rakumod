@@ -93,7 +93,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammarish {
 
     # Data statistics command
     rule data-statistics-command { <summarize-data> }
-    rule summarize-data { <summarize-directive> <the-determiner>? <data> | <display-directive> <data>? [ <summary> | <summaries> ] }
+    rule summarize-data { <summarize-directive> <the-determiner>? <data-noun> | <display-directive> <data-adjective>? [ <summary> | <summaries> ] }
 
     # Regression command
     rule regression-command { [ <.compute-directive> | <.compute-and-display> | <.do-verb> ] <quantile-regression-spec> }
