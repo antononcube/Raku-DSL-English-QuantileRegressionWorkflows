@@ -60,9 +60,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token hold-verb {*}
     token hold-verb:sym<English> { :i 'hold' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'hold', 2) }> }
 
-    proto token identifier {*}
-    token identifier:sym<English> { :i 'identifier' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'identifier', 2) }> }
-
     proto token ingest {*}
     token ingest:sym<English> { :i 'ingest' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'ingest', 2) }> | 'load' | 'use' | 'get' }
 
