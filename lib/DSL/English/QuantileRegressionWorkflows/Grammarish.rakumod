@@ -159,7 +159,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammarish {
 
     # Plot errors command
     rule plot-errors-command { <plot-errors-with-directive> }
-    rule plot-errors-with-directive { [ <.display-directive> | <.plot-directive> ] <.the-determiner>? <errors-type>? <.errors-noun> <plots-noun>? }
+    rule plot-errors-with-directive { [ <.display-directive> | <.plot-directive> ] <.diagram>? <.of-preposition>? <.the-determiner>? <errors-type>? <.errors-noun> <plots-noun>? }
     rule errors-type { <absolute-adjective> | <relative-adjective> }
 
 }
