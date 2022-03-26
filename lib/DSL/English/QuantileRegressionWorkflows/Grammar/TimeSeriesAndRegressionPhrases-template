@@ -17,8 +17,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token average-adjective { 'average' | 'mean' }
     token curve-noun { 'curve' }
     token curves-noun { 'curves' }
-    token date-noun { 'date' }
-    token dates-noun { 'dates' }
     token degree-noun { 'degree' }
     token error-noun { 'error' }
     token errors-noun { 'error' | 'errors' }

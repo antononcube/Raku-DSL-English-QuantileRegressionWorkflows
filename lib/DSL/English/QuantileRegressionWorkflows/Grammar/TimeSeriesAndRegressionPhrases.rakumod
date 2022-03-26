@@ -36,12 +36,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token curves-noun {*}
     token curves-noun:sym<English> { :i 'curves' | ([\w]+) <?{ $0.Str ne 'curve' and is-fuzzy-match($0.Str, 'curves', 2) }> }
 
-    proto token date-noun {*}
-    token date-noun:sym<English> { :i 'date' | ([\w]+) <?{ $0.Str ne 'dates' and is-fuzzy-match($0.Str, 'date', 2) }> }
-
-    proto token dates-noun {*}
-    token dates-noun:sym<English> { :i 'dates' | ([\w]+) <?{ $0.Str ne 'date' and is-fuzzy-match($0.Str, 'dates', 2) }> }
-
     proto token degree-noun {*}
     token degree-noun:sym<English> { :i 'degree' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'degree', 2) }> }
 
