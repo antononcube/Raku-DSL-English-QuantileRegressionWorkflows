@@ -8,6 +8,9 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
         does DSL::Shared::Roles::English::PipelineCommand {
 
     # Proto tokens
+    token LeastSquares-name { 'LeastSquares' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'LeastSquares') }> }
+    token QuantileRegression-name { 'QuantileRegression' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'QuantileRegression') }> }
+    token QuantileRegressionFit-name { 'QuantileRegressionFit' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'QuantileRegressionFit') }> }
     token absolute-adjective { 'absolute' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'absolute') }> }
     token anomalies-noun { 'anomalies' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'anomalies') }> }
     token anomaly-noun { 'anomaly' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'anomaly') }> }
@@ -60,6 +63,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     rule qr-object { [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object-noun> }
     rule the-outliers { <the-determiner> <outliers-noun> }
     rule value-from-left-phrase { 'value' 'from' 'left' }
+    rule regression-known-function-name { <QuantileRegression-name> | <QuantileRegressionFit-name> | <LeastSquares-name> }
 
     rule time-axis-phrase { <time-noun> <axis-noun> }
     rule value-axis-phrase { <value-noun> <axis-noun> }

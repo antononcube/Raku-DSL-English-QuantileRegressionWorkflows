@@ -8,6 +8,9 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
         does DSL::Shared::Roles::English::PipelineCommand {
 
     # Proto tokens
+    token LeastSquares-name { 'LeastSquares' }
+    token QuantileRegression-name { 'QuantileRegression' }
+    token QuantileRegressionFit-name { 'QuantileRegressionFit' }
     token absolute-adjective { 'absolute' }
     token anomalies-noun { 'anomalies' }
     token anomaly-noun { 'anomaly' }
@@ -56,12 +59,12 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
 
     # Rules
     rule least-squares-phrase { <least-adjective> <squares-noun> }
-    rule quantile-regression-phrase { <quantile-noun> <regression-noun> }
     rule qr-object { [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object-noun> }
+    rule quantile-regression-phrase { <quantile-noun> <regression-noun> }
+    rule regression-known-function-name { <QuantileRegression-name> | <QuantileRegressionFit-name> | <LeastSquares-name> }
     rule the-outliers { <the-determiner> <outliers-noun> }
-    rule value-from-left-phrase { 'value' 'from' 'left' }
-
     rule time-axis-phrase { <time-noun> <axis-noun> }
     rule value-axis-phrase { <value-noun> <axis-noun> }
+    rule value-from-left-phrase { 'value' 'from' 'left' }
 
 }
