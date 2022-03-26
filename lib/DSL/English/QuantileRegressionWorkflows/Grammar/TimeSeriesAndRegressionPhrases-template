@@ -42,6 +42,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token outliers-noun { 'outliers' | 'outlier' }
     token probabilities-noun { 'probabilities' }
     token probability-noun { 'probability' }
+    token quantile-adjective { <quantile-noun> }
     token quantile-noun { 'quantile' }
     token quantiles-noun { 'quantiles' }
     token regressand-noun { 'regressand' }
@@ -60,7 +61,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     # Rules
     rule least-squares-phrase { <least-adjective> <squares-noun> }
     rule qr-object { [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object-noun> }
-    rule quantile-regression-phrase { <quantile-noun> <regression-noun> }
+    rule quantile-regression-phrase { <quantile-adjective> <regression-noun> }
     rule regression-known-function-name { <QuantileRegression-name> | <QuantileRegressionFit-name> | <LeastSquares-name> }
     rule the-outliers { <the-determiner> <outliers-noun> }
     rule time-axis-phrase { <time-noun> <axis-noun> }

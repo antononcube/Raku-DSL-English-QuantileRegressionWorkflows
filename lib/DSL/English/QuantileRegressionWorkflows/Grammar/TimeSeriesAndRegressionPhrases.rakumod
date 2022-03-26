@@ -28,28 +28,28 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token anomaly-noun:sym<English> { :i 'anomaly' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'anomaly', 2) }> }
 
     proto token average-adjective {*}
-    token average-adjective:sym<English> { :i 'average' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'average', 2) }> | 'mean' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'mean', 2) }> }
+    token average-adjective:sym<English> { :i 'average' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'average', 2) }> | 'mean' | ([\w]+) <?{ $0.Str !(elem) <map median> and is-fuzzy-match($0.Str, 'mean', 2) }> }
 
     proto token curve-noun {*}
-    token curve-noun:sym<English> { :i 'curve' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'curve', 2) }> }
+    token curve-noun:sym<English> { :i 'curve' | ([\w]+) <?{ $0.Str ne 'curves' and is-fuzzy-match($0.Str, 'curve', 2) }> }
 
     proto token curves-noun {*}
-    token curves-noun:sym<English> { :i 'curves' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'curves', 2) }> }
+    token curves-noun:sym<English> { :i 'curves' | ([\w]+) <?{ $0.Str ne 'curve' and is-fuzzy-match($0.Str, 'curves', 2) }> }
 
     proto token date-noun {*}
-    token date-noun:sym<English> { :i 'date' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'date', 2) }> }
+    token date-noun:sym<English> { :i 'date' | ([\w]+) <?{ $0.Str ne 'dates' and is-fuzzy-match($0.Str, 'date', 2) }> }
 
     proto token dates-noun {*}
-    token dates-noun:sym<English> { :i 'dates' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'dates', 2) }> }
+    token dates-noun:sym<English> { :i 'dates' | ([\w]+) <?{ $0.Str ne 'date' and is-fuzzy-match($0.Str, 'dates', 2) }> }
 
     proto token degree-noun {*}
     token degree-noun:sym<English> { :i 'degree' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'degree', 2) }> }
 
     proto token error-noun {*}
-    token error-noun:sym<English> { :i 'error' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'error', 2) }> }
+    token error-noun:sym<English> { :i 'error' | ([\w]+) <?{ $0.Str ne 'errors' and is-fuzzy-match($0.Str, 'error', 2) }> }
 
     proto token errors-noun {*}
-    token errors-noun:sym<English> { :i 'error' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'error', 2) }> | 'errors' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'errors', 2) }> }
+    token errors-noun:sym<English> { :i 'error' | ([\w]+) <?{ $0.Str ne 'errors' and is-fuzzy-match($0.Str, 'error', 2) }> | 'errors' | ([\w]+) <?{ $0.Str ne 'error' and is-fuzzy-match($0.Str, 'errors', 2) }> }
 
     proto token fit-noun {*}
     token fit-noun:sym<English> { :i 'fit' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'fit', 1) }> | 'fitting' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'fitting', 2) }> }
@@ -76,19 +76,19 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token linear-adjective:sym<English> { :i 'linear' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'linear', 2) }> }
 
     proto token map-noun {*}
-    token map-noun:sym<English> { :i 'map' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'map', 1) }> }
+    token map-noun:sym<English> { :i 'map' | ([\w]+) <?{ $0.Str ne 'mean' and is-fuzzy-match($0.Str, 'map', 1) }> }
 
     proto token mean-adjective {*}
     token mean-adjective:sym<English> { :i  <mean-noun>  }
 
     proto token mean-noun {*}
-    token mean-noun:sym<English> { :i 'mean' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'mean', 2) }> }
+    token mean-noun:sym<English> { :i 'mean' | ([\w]+) <?{ $0.Str !(elem) <map median> and is-fuzzy-match($0.Str, 'mean', 2) }> }
 
     proto token median-adjective {*}
     token median-adjective:sym<English> { :i  <median-noun>  }
 
     proto token median-noun {*}
-    token median-noun:sym<English> { :i 'median' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'median', 2) }> }
+    token median-noun:sym<English> { :i 'median' | ([\w]+) <?{ $0.Str ne 'mean' and is-fuzzy-match($0.Str, 'median', 2) }> }
 
     proto token moving-adjective {*}
     token moving-adjective:sym<English> { :i 'moving' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'moving', 2) }> }
@@ -100,10 +100,10 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token origin-noun:sym<English> { :i 'origin' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'origin', 2) }> }
 
     proto token outlier-noun {*}
-    token outlier-noun:sym<English> { :i 'outlier' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'outlier', 2) }> }
+    token outlier-noun:sym<English> { :i 'outlier' | ([\w]+) <?{ $0.Str ne 'outliers' and is-fuzzy-match($0.Str, 'outlier', 2) }> }
 
     proto token outliers-noun {*}
-    token outliers-noun:sym<English> { :i 'outliers' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'outliers', 2) }> | 'outlier' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'outlier', 2) }> }
+    token outliers-noun:sym<English> { :i 'outliers' | ([\w]+) <?{ $0.Str ne 'outlier' and is-fuzzy-match($0.Str, 'outliers', 2) }> | 'outlier' | ([\w]+) <?{ $0.Str ne 'outliers' and is-fuzzy-match($0.Str, 'outlier', 2) }> }
 
     proto token probabilities-noun {*}
     token probabilities-noun:sym<English> { :i 'probabilities' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'probabilities', 2) }> }
@@ -111,20 +111,23 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token probability-noun {*}
     token probability-noun:sym<English> { :i 'probability' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'probability', 2) }> }
 
+    proto token quantile-adjective {*}
+    token quantile-adjective:sym<English> { :i  <quantile-noun>  }
+
     proto token quantile-noun {*}
-    token quantile-noun:sym<English> { :i 'quantile' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'quantile', 2) }> }
+    token quantile-noun:sym<English> { :i 'quantile' | ([\w]+) <?{ $0.Str ne 'quantiles' and is-fuzzy-match($0.Str, 'quantile', 2) }> }
 
     proto token quantiles-noun {*}
-    token quantiles-noun:sym<English> { :i 'quantiles' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'quantiles', 2) }> }
+    token quantiles-noun:sym<English> { :i 'quantiles' | ([\w]+) <?{ $0.Str ne 'quantile' and is-fuzzy-match($0.Str, 'quantiles', 2) }> }
 
     proto token regressand-noun {*}
     token regressand-noun:sym<English> { :i 'regressand' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'regressand', 2) }> }
 
     proto token regression-noun {*}
-    token regression-noun:sym<English> { :i 'regression' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'regression', 2) }> }
+    token regression-noun:sym<English> { :i 'regression' | ([\w]+) <?{ $0.Str ne 'regressor' and is-fuzzy-match($0.Str, 'regression', 2) }> }
 
     proto token regressor-noun {*}
-    token regressor-noun:sym<English> { :i 'regressor' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'regressor', 2) }> }
+    token regressor-noun:sym<English> { :i 'regressor' | ([\w]+) <?{ $0.Str ne 'regression' and is-fuzzy-match($0.Str, 'regressor', 2) }> }
 
     proto token relative-adjective {*}
     token relative-adjective:sym<English> { :i 'relative' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'relative', 2) }> }
@@ -158,7 +161,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     rule qr-object:sym<English> {  [ 'QR' | 'qr' | <quantile-regression-phrase> ]? <object-noun>  }
 
     proto rule quantile-regression-phrase {*}
-    rule quantile-regression-phrase:sym<English> {  <quantile-noun> <regression-noun>  }
+    rule quantile-regression-phrase:sym<English> {  <quantile-adjective> <regression-noun>  }
 
     proto rule regression-known-function-name {*}
     rule regression-known-function-name:sym<English> {  <QuantileRegression-name> | <QuantileRegressionFit-name> | <LeastSquares-name>  }
