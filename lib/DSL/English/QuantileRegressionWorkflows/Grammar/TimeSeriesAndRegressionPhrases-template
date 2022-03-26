@@ -65,6 +65,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     rule the-outliers { <the-determiner> <outliers-noun> }
     rule time-axis-phrase { <time-noun> <axis-noun> }
     rule value-axis-phrase { <value-noun> <axis-noun> }
-    rule value-from-left-phrase { 'value' 'from' 'left' }
+    rule value-from-left-phrase { <value-noun> <from-proposition> <left-noun> }
 
 }
