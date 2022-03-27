@@ -93,12 +93,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     proto token origin-noun {*}
     token origin-noun:sym<English> { :i 'origin' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'origin', 2) }> }
 
-    proto token outlier-noun {*}
-    token outlier-noun:sym<English> { :i 'outlier' | ([\w]+) <?{ $0.Str ne 'outliers' and is-fuzzy-match($0.Str, 'outlier', 2) }> }
-
-    proto token outliers-noun {*}
-    token outliers-noun:sym<English> { :i 'outliers' | ([\w]+) <?{ $0.Str ne 'outlier' and is-fuzzy-match($0.Str, 'outliers', 2) }> | 'outlier' | ([\w]+) <?{ $0.Str ne 'outliers' and is-fuzzy-match($0.Str, 'outlier', 2) }> }
-
     proto token probabilities-noun {*}
     token probabilities-noun:sym<English> { :i 'probabilities' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'probabilities', 2) }> }
 

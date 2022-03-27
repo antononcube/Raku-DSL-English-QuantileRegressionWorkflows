@@ -36,8 +36,6 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token moving-adjective { 'moving' }
     token order-noun { 'order'  }
     token origin-noun { 'origin' }
-    token outlier-noun { 'outlier' }
-    token outliers-noun { 'outliers' | 'outlier' }
     token probabilities-noun { 'probabilities' }
     token probability-noun { 'probability' }
     token quantile-adjective { <quantile-noun> }
