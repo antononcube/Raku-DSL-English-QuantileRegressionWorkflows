@@ -56,7 +56,11 @@ my Str %targetToSeparator2{Str} = %targetToSeparator.grep({ $_.key.contains('-')
 %targetToSeparator = |%targetToSeparator , |%targetToSeparator2;
 
 #-----------------------------------------------------------
-proto ToQuantileRegressionWorkflowCode(Str $command, Str $target = 'R-QRMon', | ) is export {*}
+proto ToQuantileRegressionWorkflowCode(Str $command, | ) is export {*}
+
+multi ToQuantileRegressionWorkflowCode(Str $command, Str :$target = 'R-QRMon', *%args ) {
+    return ToQuantileRegressionWorkflowCode($command, $target, |%args);
+}
 
 multi ToQuantileRegressionWorkflowCode( Str $command, Str $target = 'R-QRMon', *%args ) {
 
