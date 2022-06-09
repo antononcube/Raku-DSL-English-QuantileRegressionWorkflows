@@ -141,8 +141,8 @@ role DSL::English::QuantileRegressionWorkflows::Grammarish {
     # Find anomalies command
     rule find-anomalies-command { <find-anomalies-by-residuals-threshold> | <find-anomalies-by-residuals-outliers> }
     rule find-anomalies-by-residuals-preamble { <.compute-directive> <.anomalies-noun> [ <.by-preposition> <.residuals-noun> ]? }
-    rule find-anomalies-by-residuals-threshold { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? <.threshold> <number-value> }
-    rule find-anomalies-by-residuals-outliers { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? [ <.outlier-noun> <.identifier-adjective> <variable-name> | <variable-name> <.outlier-noun> <.identifier> ]}
+    rule find-anomalies-by-residuals-threshold { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? <.threshold-noun> <number-value> }
+    rule find-anomalies-by-residuals-outliers { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? [ <.outlier-noun> <.identifier-adjective> <variable-name> | <variable-name> <.outlier-noun> <.identifier-noun> ]}
 
     # Plot command
     rule plot-command { <.display-directive> <plot-elements-list>? [ <date-list-diagram> | <diagram> ] | <diagram> };
