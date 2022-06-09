@@ -144,9 +144,4 @@ class DSL::English::QuantileRegressionWorkflows::Actions::English::Standard
     if $<errors-type> && $<errors-type>.trim eq 'absolute' { $err_type = False  }
     make "show plot of {$err_type ?? 'relative' !! 'absolute'} errors";
   }
-
-  ## Setup code
-  method setup-code-command($/) {
-    make 'SETUPCODE' => ''
-  }
 }

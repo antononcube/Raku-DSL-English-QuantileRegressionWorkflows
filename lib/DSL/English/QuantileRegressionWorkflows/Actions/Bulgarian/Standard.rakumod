@@ -144,9 +144,4 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard
     if $<errors-type> && $<errors-type>.trim eq 'absolute' { $err_type = False  }
     make "покажи диаграма на {$err_type ?? 'относителните' !! 'абсолютните'} грешки";
   }
-
-  ## Setup code
-  method setup-code-command($/) {
-    make 'SETUPCODE' => ''
-  }
 }
