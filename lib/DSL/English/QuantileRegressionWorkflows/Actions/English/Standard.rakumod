@@ -1,4 +1,6 @@
 
+use v6.d;
+
 use DSL::Shared::Actions::English::PipelineCommand;
 use DSL::Shared::Actions::English::Standard::PipelineCommand;
 

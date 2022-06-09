@@ -1,4 +1,6 @@
 
+use v6.d;
+
 use DSL::Shared::Actions::Bulgarian::PipelineCommand;
 use DSL::Shared::Actions::Russian::Standard::PipelineCommand;
 

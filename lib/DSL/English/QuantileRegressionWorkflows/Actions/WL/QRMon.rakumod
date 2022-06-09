@@ -38,7 +38,8 @@
 #==============================================================================
 =end comment
 
-use v6;
+use v6.d;
+
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 use DSL::Shared::Actions::English::WL::PipelineCommand;
 
