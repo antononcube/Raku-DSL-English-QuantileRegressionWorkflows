@@ -3,21 +3,25 @@ use v6.d;
 use lib '.';
 use lib './lib';
 
-use DSL::English::QuantileRegressionWorkflows::Grammar;
+use DSL::English::QuantileRegressionWorkflows;
 
 use Test;
 
 plan 2;
+
+sub toQRMon (Str $command ) {
+    return ToQuantileRegressionWorkflowCode( $command, 'R::QRMon' );
+}
 
 #-----------------------------------------------------------
 # Data transformation
 #-----------------------------------------------------------
 
 ## 1
-ok to_QRMon_R('moving map Mean with 5 elements'),
+ok toQRMon('moving map Mean with 5 elements'),
         'moving map Mean with 5 elements';
 
-ok to_QRMon_R('moving average using two days'),
+ok toQRMon('moving average using two days'),
         'moving average using two days';
 
 done-testing;
