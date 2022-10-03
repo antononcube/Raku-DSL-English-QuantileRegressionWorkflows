@@ -1,0 +1,29 @@
+
+use DSL::English::QuantileRegressionWorkflows::Grammar;
+
+use lib '.';
+use lib './lib';
+
+use Test;
+plan 4;
+
+# Shortcut
+my $pQRMONCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
+
+#-----------------------------------------------------------
+# Data statistics
+#-----------------------------------------------------------
+
+ok $pQRMONCOMMAND.parse('cross tabulate'),
+        'cross tabulate';
+
+ok $pQRMONCOMMAND.parse('cross tabulate the data'),
+        'cross tabulate the data';
+
+ok $pQRMONCOMMAND.parse('cross tabulate time variable vs dependent variable'),
+        'cross tabulate time variable vs dependent variable';
+
+ok $pQRMONCOMMAND.parse('cross tabulate the time variable vs the dependent'),
+        'cross tabulate the time variable vs the dependent';
+
+done-testing;

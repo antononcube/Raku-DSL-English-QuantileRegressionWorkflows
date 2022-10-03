@@ -5,22 +5,21 @@ use lib '.';
 use lib './lib';
 
 use Test;
-plan 3;
+
+plan 2;
 
 # Shortcut
 my $pQRMONCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
 
 #-----------------------------------------------------------
-# Data statistics
+# Plot
 #-----------------------------------------------------------
 
-ok $pQRMONCOMMAND.parse('summarize data'),
-        'summarize data';
+ok $pQRMONCOMMAND.parse('show regression curves plot'),
+        'show regression curves plot';
 
-ok $pQRMONCOMMAND.parse('summarize the data'),
-        'summarize the data';
+ok $pQRMONCOMMAND.parse('display date list outliers plot'),
+        'display date list outliers plot';
 
-ok $pQRMONCOMMAND.parse('show data summary'),
-        'show data summary';
 
 done-testing;

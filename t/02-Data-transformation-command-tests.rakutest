@@ -1,8 +1,11 @@
 
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 
+use lib '.';
+use lib './lib';
+
 use Test;
-plan 16;
+plan 14;
 
 # Shortcut
 my $pQRMONCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
@@ -11,51 +14,59 @@ my $pQRMONCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
 # Data transformation
 #-----------------------------------------------------------
 
+## 1
 ok $pQRMONCOMMAND.parse('rescale x axis'),
         'rescale x axis';
 
+## 2
 ok $pQRMONCOMMAND.parse('rescale regressor axis'),
         'rescale regressor axis';
 
+## 3
 ok $pQRMONCOMMAND.parse('rescale y axis'),
         'rescale y axis';
 
+## 4
 ok $pQRMONCOMMAND.parse('rescale value axis'),
         'rescale value axis';
 
+## 5
 ok $pQRMONCOMMAND.parse('rescale both axes'),
         'rescale both axes';
 
+## 6
 ok $pQRMONCOMMAND.parse('resample'),
         'resample';
 
+## 7
 ok $pQRMONCOMMAND.parse('resample the time series with step 0.3'),
         'resample the time series with step 0.3';
 
+## 8
 ok $pQRMONCOMMAND.parse('resample with linear interpolation'),
         'resample with linear interpolation';
 
-ok $pQRMONCOMMAND.parse('moving average using two days'),
-        'moving average using two days';
-
+## 9
 ok $pQRMONCOMMAND.parse('moving average using 5'),
         'moving average using 5';
 
+## 10
 ok $pQRMONCOMMAND.parse('moving median with 5 elements'),
         'moving average using 5';
 
+## 11
 ok $pQRMONCOMMAND.parse('moving average with weights 1, 2, 5'),
         'moving average with weights 1, 2, 5';
 
-ok $pQRMONCOMMAND.parse('moving map Mean with 5 elements'),
-        'moving map Mean with 5 elements';
-
+## 12
 ok $pQRMONCOMMAND.parse('resample with hold value from left'),
         'resample with hold value from left';
 
+## 13
 ok $pQRMONCOMMAND.parse('resample with HoldValueFromLeft'),
         'resample with HoldValueFromLeft';
 
+## 14
 ok $pQRMONCOMMAND.parse('resample the time series'),
         'resample the time series';
 

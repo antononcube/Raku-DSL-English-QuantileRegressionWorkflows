@@ -1,9 +1,12 @@
 
 use DSL::English::QuantileRegressionWorkflows;
 
+use lib '.';
+use lib './lib';
+
 use Test;
 
-plan 15;
+plan 14;
 
 #-----------------------------------------------------------
 # Data transformation
@@ -52,22 +55,15 @@ ok to_QRMon_R('moving average with weights 1, 2, 5'),
         'moving average with weights 1, 2, 5';
 
 ## 12
-ok to_QRMon_R('moving map Mean with 5 elements'),
-        'moving map Mean with 5 elements';
-
-## 13
 ok to_QRMon_R('resample with hold value from left'),
         'resample with hold value from left';
 
-## 14
+## 13
 ok to_QRMon_R('resample with HoldValueFromLeft'),
         'resample with HoldValueFromLeft';
 
-## 15
+## 14
 ok to_QRMon_R('resample the time series'),
         'resample the time series';
-
-# ok to_QRMon_R('moving average using two days'),
-# 'moving average using two days';
 
 done-testing;

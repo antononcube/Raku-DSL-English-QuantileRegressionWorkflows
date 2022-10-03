@@ -1,0 +1,22 @@
+
+use DSL::English::QuantileRegressionWorkflows;
+
+use lib '.';
+use lib './lib';
+
+use Test;
+
+plan 2;
+
+#-----------------------------------------------------------
+# Data transformation
+#-----------------------------------------------------------
+
+## 1
+ok to_QRMon_R('moving map Mean with 5 elements'),
+        'moving map Mean with 5 elements';
+
+ok to_QRMon_R('moving average using two days'),
+        'moving average using two days';
+
+done-testing;

@@ -1,6 +1,9 @@
 
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 
+use lib '.';
+use lib './lib';
+
 use Test;
 
 plan 6;

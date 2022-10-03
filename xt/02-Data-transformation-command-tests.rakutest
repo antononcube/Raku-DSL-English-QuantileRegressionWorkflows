@@ -5,22 +5,19 @@ use lib '.';
 use lib './lib';
 
 use Test;
-plan 3;
+plan 2;
 
 # Shortcut
 my $pQRMONCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
 
 #-----------------------------------------------------------
-# Data statistics
+# Data transformation
 #-----------------------------------------------------------
 
-ok $pQRMONCOMMAND.parse('summarize data'),
-        'summarize data';
+ok $pQRMONCOMMAND.parse('moving average using two days'),
+        'moving average using two days';
 
-ok $pQRMONCOMMAND.parse('summarize the data'),
-        'summarize the data';
-
-ok $pQRMONCOMMAND.parse('show data summary'),
-        'show data summary';
+ok $pQRMONCOMMAND.parse('moving map Mean with 5 elements'),
+        'moving map Mean with 5 elements';
 
 done-testing;
