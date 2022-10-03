@@ -3,7 +3,7 @@ use v6.d;
 use lib '.';
 use lib './lib';
 
-use DSL::English::QuantileRegressionWorkflows::Grammar;
+use DSL::English::QuantileRegressionWorkflows;
 
 use Test;
 
