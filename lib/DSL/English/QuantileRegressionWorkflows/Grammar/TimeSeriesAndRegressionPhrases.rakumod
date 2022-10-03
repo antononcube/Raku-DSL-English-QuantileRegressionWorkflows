@@ -164,7 +164,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     rule value-axis-phrase:sym<English> {  <value-noun> <axis-noun>  }
 
     proto rule value-from-left-phrase {*}
-    rule value-from-left-phrase:sym<English> {  <value-noun> <from-proposition> <left-noun>  }
+    rule value-from-left-phrase:sym<English> {  <value-noun> <from-preposition> <left-noun>  }
 
 }
 
