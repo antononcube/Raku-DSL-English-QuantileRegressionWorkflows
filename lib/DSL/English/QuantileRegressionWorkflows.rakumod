@@ -82,24 +82,3 @@ multi ToQuantileRegressionWorkflowCode( Str $command, Str $target = 'R-QRMon', *
                                                                |%args )
 
 }
-
-#-----------------------------------------------------------
-proto to_QRMon_Python($) is export {*}
-
-multi to_QRMon_Python ( Str $command ) {
-    return ToQuantileRegressionWorkflowCode( $command, 'Python-QRMon' );
-}
-
-#-----------------------------------------------------------
-proto to_QRMon_R($) is export {*}
-
-multi to_QRMon_R ( Str $command ) {
-    return ToQuantileRegressionWorkflowCode( $command, 'R-QRMon' );
-}
-
-#-----------------------------------------------------------
-proto to_QRMon_WL($) is export {*}
-
-multi to_QRMon_WL ( Str $command ) {
-    return ToQuantileRegressionWorkflowCode( $command, 'WL-QRMon' );
-}
