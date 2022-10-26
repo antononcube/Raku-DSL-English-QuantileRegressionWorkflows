@@ -1,14 +1,14 @@
 {
   "name": "DSL::English::QuantileRegressionWorkflows",
   "description": "Quantile Regression workflows building by natural language commands.",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "perl": "6.d",
   "authors": [
     "Anton Antonov"
   ],
   "auth": "zef:antononcube",
   "depends": [
-    "DSL::Shared:ver<0.1.1+>"
+    "DSL::Shared:ver<0.1.4+>"
   ],
   "build-depends": [],
   "test-depends": [],
