@@ -64,7 +64,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammarish {
 
     # Create command
     rule create-command { <create-by-dataset> }
-    rule create-simple { <.create-directive> <.a-determiner>? <object-noun> <simple-way-phrase> | <simple> <object-noun> <creation> }
+    rule create-simple { <.create-directive> <.a-determiner>? <object-noun> <simple-way-phrase> | <simple> <object-noun> <creation-noun> }
     rule create-by-dataset { [ <.create-simple> | <.create-directive> | <use-directive> ] [ <.by-preposition> | <.with-preposition> | <.from-preposition> ]? <dataset-name> }
 
     # Data transform command
