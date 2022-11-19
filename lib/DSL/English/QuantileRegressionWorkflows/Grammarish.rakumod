@@ -18,7 +18,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #   Written by Anton Antonov,
-#   antononcube @ gmai l . c om,
+#   ʇǝu˙oǝʇsod@ǝqnɔuouoʇuɐ,
 #   Windermere, Florida, USA.
 #
 #==============================================================================
@@ -145,9 +145,9 @@ role DSL::English::QuantileRegressionWorkflows::Grammarish {
     rule find-anomalies-by-residuals-outliers { <.find-anomalies-by-residuals-preamble> <.with-preposition> <.the-determiner>? [ <.outlier-noun> <.identifier-adjective> <variable-name> | <variable-name> <.outlier-noun> <.identifier-noun> ]}
 
     # Plot command
-    rule plot-command { <.display-directive> <plot-elements-list>? [ <date-list-diagram> | <diagram> ] | <diagram> };
+    rule plot-command { <.display-directive> [ <plot-elements-list> [ <date-list-diagram> | <diagram> ]? | <date-list-diagram> | <diagram> ] };
     rule plot-elements-list { [ <diagram-type> | <data> ]+  % <list-separator> }
-    rule diagram-type { <regression-curve-spec> | <error-noun> | <outliers-noun> };
+    rule diagram-type { <regression-curve-spec> | <error-noun> | <outlier-adjective> | <outliers-noun> };
     rule regression-curve-spec { <fitted-adjective>? [ <regression-function> | <regression-function-name> ] [ <curve-noun> | <curves-noun> | <function> | <functions> ]? }
     rule date-list-phrase { [ <date-noun> | <dates-noun> ]  <list-noun>? }
     rule date-list-diagram { [ <date-list-phrase> <diagram> | <diagram> [ <with-preposition> [ <dates-noun> | <date-noun> <axis-noun> ] ] ] [ <.with-preposition>? <date-origin> ]? }
