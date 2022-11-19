@@ -7,7 +7,7 @@ use DSL::English::QuantileRegressionWorkflows::Grammar;
 
 use Test;
 
-plan 7;
+plan 9;
 
 # Shortcut
 my $pQRMONCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
@@ -36,5 +36,11 @@ ok $pQRMONCOMMAND.parse('compute outliers with probabilities 0.1 and 0.9'),
 
 ok $pQRMONCOMMAND.parse('compute outliers with 0.1 0.2 0.5 0.7 0.9'),
         'compute outliers with 0.1 0.2 0.5 0.7 0.9';
+
+ok $pQRMONCOMMAND.parse('show outliers'),
+        'show outliers';
+
+ok $pQRMONCOMMAND.parse('echo outlier plots'),
+        'echo outlier plots';
 
 done-testing;
