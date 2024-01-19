@@ -70,6 +70,7 @@ QRMonEcho( "anomalies finding follows" ) %>%
 QRMonFindAnomaliesByResiduals( threshold = 5) %>%
 QRMonTakeValue
 ```    
+
 ## Versions
 
 The original version of this Raku package was developed and hosted at 
@@ -79,6 +80,8 @@ A dedicated GitHub repository was made in order to make the installation with Ra
 (As shown above.)
 
 ## References
+
+### Packages
 
 \[AA1\] Anton Antonov,
 [Quantile Regression Monad in R](https://github.com/antononcube/QRMon-R), 
@@ -94,3 +97,15 @@ A dedicated GitHub repository was made in order to make the installation with Ra
 [Quantile Regression Workflows](https://github.com/antononcube/ConversationalAgents/tree/master/Packages/Perl6/QuantileRegressionWorkflows),
 (2019),
 [ConversationalAgents at GitHub](https://github.com/antononcube/ConversationalAgents).
+
+### Videos
+
+[AAv1] Anton Antonov,
+["Simplified Machine Learning Workflows Overview"](https://www.youtube.com/watch?v=Xy7eV8wRLbE), (WTC-2022),
+(2022),
+[YouTube/Wolfram](https://www.youtube.com/@WolframResearch).
+
+[AAv2] Anton Antonov,
+["Natural Language Processing Template Engine"](https://www.youtube.com/watch?v=IrIW9dB5sRM), (WTC-2022),
+(2022),
+[YouTube/Wolfram](https://www.youtube.com/@WolframResearch).
