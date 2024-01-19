@@ -2,10 +2,10 @@
 
 ## In brief
 
-This Raku Perl 6 package has grammar classes and action classes for the parsing and
-interpretation of spoken commands that specify Quantile Regression (QR) workflows.
+This Raku Perl 6 package has grammar classes and action classes. 
+These are used for the parsing and interpretation of spoken commands that specify Quantile Regression (QR) workflows.
 
-It is envisioned that the interpreters (actions) are going to target different
+It is envisioned that the interpreters (actions) target different
 programming languages: R, Mathematica, Python, etc.
 
 The generated pipelines are for the software monads 
@@ -18,7 +18,7 @@ and
 
 **1.** Install Raku (Perl 6) : https://raku.org/downloads . 
 
-**2.** Make sure you have Zef Module Installer. 
+**2.** You should make sure you have the Zef Module Installer.
  
    - Type in `zef --version` in the command line.
    - Zef Module Installer can be installed from : https://github.com/ugexe/zef .
@@ -72,7 +72,7 @@ QRMonTakeValue
 ```    
 ## Versions
 
-The original version of this Raku package was developed/hosted at 
+The original version of this Raku package was developed and hosted at 
 \[ [AA3](https://github.com/antononcube/ConversationalAgents/tree/master/Packages/Perl6/QuantileRegressionWorkflows) \].
 
 A dedicated GitHub repository was made in order to make the installation with Raku's `zef` more direct. 
