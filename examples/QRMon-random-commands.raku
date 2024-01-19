@@ -13,7 +13,7 @@ my @commandRules = %focusRules.keys.grep({ $_ ~~ / .* '-command' $ / }).grep({ $
 
 my @tblRes;
 for @commandRules.sort -> $cr {
-        my @randSentences = (^10).map({ generate-random-sentence(
+        my @randSentences = (^10).map({ random-sentence-generation(
                 '<' ~ $cr ~ '>',
                 %focusRules,
                 max-iterations => 40,

@@ -1,5 +1,4 @@
-use lib './lib';
-use lib '.';
+
 use DSL::English::QuantileRegressionWorkflows;
 use DSL::English::QuantileRegressionWorkflows::Grammar;
 
@@ -7,6 +6,10 @@ use DSL::English::QuantileRegressionWorkflows::Grammar;
 # Shortcuts
 #-----------------------------------------------------------
 my $pCOMMAND = DSL::English::QuantileRegressionWorkflows::Grammar;
+
+sub qr-subparse(Str:D $command, Str:D :$rule = 'TOP') {
+    $pCOMMAND.subparse($command, :$rule);
+}
 
 sub qr-parse(Str:D $command, Str:D :$rule = 'TOP') {
     $pCOMMAND.parse($command, :$rule);
@@ -20,6 +23,9 @@ sub qr-interpret(Str:D $command,
 
 #----------------------------------------------------------
 
+#say qr-subparse('show absolute errors plots');
+#say '-' x 120;
+#say qr-subparse('show plots of absolute errors');
 
 my @commands = ('
 include setup code;
@@ -30,13 +36,16 @@ rescale both axes;
 compute quantile regression with 20 knots and probabilities from 0.1 to 0.9 with step 0.1;
 show date list plot;
 plot absolute errors plots;
+show absolute errors plots;
+show plots of the absolute errors;
 compute outliers;
 echo pipeline context;
 assign pipeline object to qrObj34;
-';);
+');
 
-#my @targets = <Python-QRMon R-QRMon WL-QRMon Bulgarian>;
-my @targets = <Bulgarian English Russian>;
+
+my @targets = <Python-QRMon R-QRMon WL-QRMon>;
+#my @targets = <Bulgarian English Russian>;
 
 for @commands -> $c {
     say "\n", '=' x 20;
@@ -48,5 +57,6 @@ for @commands -> $c {
         say ToQuantileRegressionWorkflowCode($c, $t, format => 'hash');
     }
 }
+
 
 #say qr-parse( @commands[0], rule => 'workflow-commands-list');
