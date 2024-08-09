@@ -58,5 +58,20 @@ for @commands -> $c {
     }
 }
 
-
 #say qr-parse( @commands[0], rule => 'workflow-commands-list');
+
+# Parallel execution profiling
+#`[
+my $degree = 2;
+my $batch = Whatever;
+my $n = 1000;
+my $tstart = now;
+for ^$n {
+    ToQuantileRegressionWorkflowCode(@commands.head, "WL::QRMon", format => 'hash', :$degree, :$batch);
+}
+my $tend = now;
+say "Total time: {$tend - $tstart} for degree => $degree, batch => {$batch.gist}.";
+say "Per call  : {($tend - $tstart) / $n}";
+
+say ToQuantileRegressionWorkflowCode(@commands.head, "WL::QRMon", format => 'hash', :$degree, :$batch);
+]
