@@ -182,7 +182,8 @@ class DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon
   ## Setup code
   method setup-code-command($/) {
     make 'SETUPCODE' => q:to/SETUPEND/
-    Import["https://raw.githubusercontent.com/antononcube/MathematicaForPrediction/master/MonadicProgramming/MonadicQuantileRegression.m"];
+    PacletInstall["AntonAntonov/MonadicQuantileRegression"];
+    Needs["AntonAntonov`MonadicQuantileRegression`"];
     SETUPEND
   }
 }
