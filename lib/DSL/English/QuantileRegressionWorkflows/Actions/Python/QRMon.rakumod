@@ -12,6 +12,8 @@ use DSL::Shared::Actions::English::Python::PipelineCommand;
 # 3. [ ] Implement anomaly finding functions (in Python)
 # 4. [ ] Make the class DSL::English::QuantileRegressionWorkflows::Actions::Python::Regressionizer
 # 5. [ ] Do corresponding refactoring across packages to use "*::Regressionizer".
+# 6. [ ] "compute and plot outliers" should work.
+# 7. [ ] `echo_context` or similar should work.
 
 class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
         is DSL::Shared::Actions::English::Python::PipelineCommand {
