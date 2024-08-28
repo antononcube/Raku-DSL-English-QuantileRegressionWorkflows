@@ -2,6 +2,17 @@ use v6.d;
 
 use DSL::Shared::Actions::English::Python::PipelineCommand;
 
+# The proper name of this class is / should be
+# DSL::English::QuantileRegressionWorkflows::Actions::Python::Regressionizer
+# Since references like "Python-QRMon" are used in other packages so for now we keep the "*::QRMon" name.
+
+# TODO
+# 1. [ ] Proper Python lists (instead of generating R-syntax `seq(...)`)
+# 2. [ ] Proper Python assignment pipeline method
+# 3. [ ] Implement anomaly finding functions (in Python)
+# 4. [ ] Make the class DSL::English::QuantileRegressionWorkflows::Actions::Python::Regressionizer
+# 5. [ ] Do corresponding refactoring across packages to use "*::Regressionizer".
+
 class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
         is DSL::Shared::Actions::English::Python::PipelineCommand {
 
