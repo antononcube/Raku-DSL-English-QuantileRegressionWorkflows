@@ -1,7 +1,7 @@
 {
   "name": "DSL::English::QuantileRegressionWorkflows",
   "description": "Quantile Regression workflows building by natural language commands.",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "perl": "6.d",
   "authors": [
     "Anton Antonov"
