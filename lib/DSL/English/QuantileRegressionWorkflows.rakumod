@@ -26,31 +26,33 @@ use DSL::English::QuantileRegressionWorkflows::Actions::Russian::Standard;
 use DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
 my %targetToAction{Str} =
-    "Bulgarian"        => DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard,
-    "English"          => DSL::English::QuantileRegressionWorkflows::Actions::English::Standard,
-    "Python"           => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
-    "Python-QRMon"     => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
-    "R"                => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
-    "R-QRMon"          => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
-    "Russian"          => DSL::English::QuantileRegressionWorkflows::Actions::Russian::Standard,
-    "Mathematica"      => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
-    "WL"               => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
-    "WL-QRMon"         => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
+    "Bulgarian"             => DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard,
+    "English"               => DSL::English::QuantileRegressionWorkflows::Actions::English::Standard,
+    "Python"                => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
+    "Python-QRMon"          => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
+    "Python-Regressionizer" => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
+    "R"                     => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
+    "R-QRMon"               => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
+    "Russian"               => DSL::English::QuantileRegressionWorkflows::Actions::Russian::Standard,
+    "Mathematica"           => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
+    "WL"                    => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
+    "WL-QRMon"              => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
 my %targetToAction2{Str} = %targetToAction.grep({ $_.key.contains('-') }).map({ $_.key.subst('-', '::') => $_.value }).Hash;
 %targetToAction = |%targetToAction , |%targetToAction2;
 
 my Str %targetToSeparator{Str} =
-    "Bulgarian"        => "\n",
-    "English"          => "\n",
-    "R"                => " %>%\n",
-    "R-QRMon"          => " %>%\n",
-    "Mathematica"      => " \\[DoubleLongRightArrow]\n",
-    "Python"           => ".",
-    "Python-QRMon"     => ".",
-    "Russian"          => "\n",
-    "WL"               => " \\[DoubleLongRightArrow]\n",
-    "WL-QRMon"         => " \\[DoubleLongRightArrow]\n";
+    "Bulgarian"             => "\n",
+    "English"               => "\n",
+    "R"                     => " %>%\n",
+    "R-QRMon"               => " %>%\n",
+    "Mathematica"           => " \\[DoubleLongRightArrow]\n",
+    "Python"                => ".",
+    "Python-QRMon"          => ".",
+    "Python-Regressionizer" => ".",
+    "Russian"               => "\n",
+    "WL"                    => " \\[DoubleLongRightArrow]\n",
+    "WL-QRMon"              => " \\[DoubleLongRightArrow]\n";
 
 my Str %targetToSeparator2{Str} = %targetToSeparator.grep({ $_.key.contains('-') }).map({ $_.key.subst('-', '::') => $_.value }).Hash;
 %targetToSeparator = |%targetToSeparator , |%targetToSeparator2;
