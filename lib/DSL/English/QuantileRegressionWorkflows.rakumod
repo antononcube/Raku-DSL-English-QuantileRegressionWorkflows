@@ -8,8 +8,9 @@ interpretation of English natural speech commands that specify Quantile Regressi
 =head1 Synopsis
 
     use DSL::English::QuantileRegressionWorkflows;
-    my $gcode = ToQuantileRegressionWorkflowCode("compute quantile regression with 0.1 amd 0.9; show outliers");
-    my $rcode = to_QRMon_R("compute quantile regression with 0.1 amd 0.9; show outliers");
+    my $cmd = "compute quantile regression with 0.1 amd 0.9; show outliers";
+    my $rcode = ToQuantileRegressionWorkflowCode($cmd);
+    my $pcode = ToQuantileRegressionWorkflowCode($cmd, target => "Python::QRMon");
 
 =end pod
 
