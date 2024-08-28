@@ -1,43 +1,3 @@
-=begin comment
-#==============================================================================
-#
-#   QRMon-Py actions in Raku Perl 6
-#   Copyright (C) 2019  Anton Antonov
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#   Written by Anton Antonov,
-#   ʇǝu˙oǝʇsod@ǝqnɔuouoʇuɐ,
-#   Windermere, Florida, USA.
-#
-#==============================================================================
-#
-#   For more details about Raku (Perl6) see https://rakue.org/ .
-#
-#==============================================================================
-#
-#   The actions are implemented for the grammar:
-#
-#     DSL::English::QuantileRegressionWorkflows::Grammar
-#
-#   in the file :
-#
-#     https://github.com/antononcube/ConversationalAgents/blob/master/Packages/Perl6/DSL::English::QuantileRegressionWorkflows/lib/DSL/English/QuantileRegressionWorkflows/Grammar.pm6
-#
-#==============================================================================
-=end comment
-
 use v6.d;
 
 use DSL::Shared::Actions::English::Python::PipelineCommand;
@@ -56,43 +16,43 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
 
   # Load data
   method data-load-command($/) { make $/.values[0].made; }
-  method load-data($/) { make 'obj = QRMonSetData( qrObj = obj, data = ' ~ $<data-location-spec>.made ~ ')'; }
+  method load-data($/) { make 'set_data(data = ' ~ $<data-location-spec>.made ~ ')'; }
   method data-location-spec($/) { make $<dataset-name>.made; }
   method use-qr-object($/) { make 'obj = ' ~ $<variable-name>.made; }
-  method use-dataset($/) { make 'obj = QRMonUnit(' ~ $<variable-name>.made ~ ')'; }
+  method use-dataset($/) { make 'obj = Regressionizer(' ~ $<variable-name>.made ~ ')'; }
   method dataset-name($/) { make $/.Str; }
 
   # Create commands
   method create-command($/) { make $/.values[0].made; }
-  method create-simple($/) { make 'obj = QRMonUnit()'; }
-  method create-by-dataset($/) { make 'obj = QRMonUnit( data = ' ~ $<dataset-name>.made ~ ')'; }
+  method create-simple($/) { make 'obj = Regressionizer()'; }
+  method create-by-dataset($/) { make 'obj = Regressionizer( data = ' ~ $<dataset-name>.made ~ ')'; }
 
   # Data transform command
   method data-transformation-command($/) { make $/.values[0].made; }
 
-  method delete-missing($/) { make 'obj = QRMonDeleteMissing( qrObj = obj )'; }
+  method delete-missing($/) { make 'delete_missing()'; }
 
-  method rescale-command($/) { make 'obj = QRMonRescale( qrObj = obj, ' ~ make $/.values[0].made ~ ')'; }
+  method rescale-command($/) { make 'rescale( ' ~ make $/.values[0].made ~ ')'; }
   method rescale-axis($/) { make $/.values[0].made; }
   method axis-spec($/) { make $/.values[0].made; }
-  method regressor-axis-spec($/) { make 'regressorAxisQ = true'; }
-  method value-axis-spec($/) { make 'valueAxisQ = true'; }
+  method regressor-axis-spec($/) { make 'regressor = True'; }
+  method value-axis-spec($/) { make 'value = True'; }
 
-  method rescale-both-axes($/) { make 'regressorAxisQ = true, valueAxisQ = true'; }
+  method rescale-both-axes($/) { make 'regressor = true, value = true'; }
 
-  method resample-command($/) { make 'obj = QRMonFailure( qrObj = obj, \"Resampling is not implemented in QRMon-Py.\" )'; }
+  method resample-command($/) { make 'failure(\"Resampling is not implemented in QRMon-Py.\" )'; }
 
-  method moving-func-command($/) { make 'obj = QRMonFailure( qrObj = obj, \"Moving mapping is not implemented in QRMon-Py.\" )'; }
+  method moving-func-command($/) { make 'failure(\"Moving mapping is not implemented in QRMon-Py.\" )'; }
 
   # Data statistics command
   method data-statistics-command($/) { make $/.values[0].made; }
-  method summarize-data($/) { make 'obj = QRMonEchoDataSummary( qrObj = obj )'; }
+  method summarize-data($/) { make 'echo_data_summary()'; }
 
   # Quantile Regression
   method regression-command($/) { make $/.values[0].made; }
   method quantile-regression-spec($/) { make $/.values[0].made; }
-  method quantile-regression-spec-simple($/) { make 'obj = QRMonQuantileRegression( qrObj = obj )'; }
-  method quantile-regression-spec-full($/) {  make 'obj = QRMonQuantileRegression( qrObj = obj, ' ~ $<quantile-regression-spec-element-list>.made ~ ' )'; }
+  method quantile-regression-spec-simple($/) { make 'quantile_regression()'; }
+  method quantile-regression-spec-full($/) {  make 'quantile_regression( ' ~ $<quantile-regression-spec-element-list>.made ~ ' )'; }
 
   method quantile-regression-spec-element-list($/) {
 
@@ -103,22 +63,22 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
     if @ks.first('knots-spec-subcommand') {
       make $res;
     } else {
-      make 'df = 12, ' ~ $res ;
+      make 'knots = 12, ' ~ $res ;
     }
   }
 
   method quantile-regression-spec-element($/) { make $/.values[0].made; }
 
   # QR element - list of probabilities.
-  method probabilities-spec-subcommand($/) { make 'probabilities = ' ~ $<probabilities-spec>.made; }
-  method probabilities-spec($/) { make $/.values[0].made; }
+  method probabilities-spec-subcommand($/) { make 'probs = ' ~ $<probabilities-spec>.made; }
+  method probabilities-spec($/) { make $/.values[0].made.subst(/^ 'seq('/, '('); }
 
   # QR element - knots.
-  method knots-spec-subcommand($/) { make 'df = ' ~ $<knots-spec>.made; }
+  method knots-spec-subcommand($/) { make 'knots = ' ~ $<knots-spec>.made; }
   method knots-spec($/) { make $/.values[0].made; }
 
   # QR element - interpolation order.
-  method interpolation-order-spec-subcommand($/) { make 'degree = ' ~ $<interpolation-order-spec>.made; }
+  method interpolation-order-spec-subcommand($/) { make 'order = ' ~ $<interpolation-order-spec>.made; }
   method interpolation-order-spec($/) { make $/.values[0].made; } # make $.<integer-value>.made;
 
   # Find outliers command
@@ -126,63 +86,63 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
 
   method find-outliers-simple($/) {
     if $<compute-and-display><display-directive> {
-      make 'QRMonOutliers() %>% QRMonOutliersPlot()';
+      make 'outliers().outliers_plot()';
     } else {
-      make 'QRMonOutliers()';
+      make 'outliers()';
     }
   }
 
   method find-type-outliers($/) {
     if $<compute-and-display><display-directive> {
-      make 'QRMonOutliers() %>% QRMonOutliersPlot()';
+      make 'outliers().outliers_plot()';
     } else {
-      make 'QRMonOutliers()';
+      make 'outliers()';
     }
   }
 
   method find-outliers-spec($/) {
     if $<compute-and-display><display-directive> {
-      make 'QRMonOutliers() %>% QRMonOutliersPlot()';
+      make 'outliers().outliers_plot()';
     } else {
-      make 'QRMonOutliers()';
+      make 'outliers()';
     }
   }
 
   # Find anomalies command
   method find-anomalies-command($/) { make $/.values[0].made; }
 
-  method find-anomalies-by-residuals-threshold($/) { make 'obj = QRMonFindAnomaliesByResiduals( qrObj = obj, threshold = ' ~ $<number-value>.made ~ ')'; }
-  method find-anomalies-by-residuals-outliers($/) { make 'obj = QRMonFindAnomaliesByResiduals( qrObj = obj, outlierIdentifier = ' ~ $<variable-name>.made ~ ')'; }
+  method find-anomalies-by-residuals-threshold($/) { make 'find_anomalies_by_residuals( threshold = ' ~ $<number-value>.made ~ ')'; }
+  method find-anomalies-by-residuals-outliers($/) { make 'find_anomalies_by_residuals( outlier_identifier = ' ~ $<variable-name>.made ~ ')'; }
 
   # Plot command
   method plot-command($/) {
     my Str $opts = 'datePlotQ = false';
     if $/.keys.contains(<date-list-diagram>) { $opts = $<date-list-diagram>.made; }
-    make 'obj = QRMonPlot( qrObj = obj, ' ~ $opts ~ ')';
+    make 'plot( ' ~ $opts ~ ')';
   }
 
   method date-list-diagram($/) {
     my Str $opts = '';
     if $/.keys.contains(<date-origin>) { $opts = ', ' ~ $<date-origin>.made; }
-    make 'datePlotQ = true' ~ $opts;
+    make 'date_plot = True' ~ $opts;
   }
-  method date-origin($/) { make 'dateOrigin = ' ~ $<date-spec>.made; }
+  method date-origin($/) { make 'epoch_origin = ' ~ $<date-spec>.made; }
   method date-spec($/) { make "'" ~ $/.Str ~ "'"; }
 
   # Error plot command
   method plot-errors-command($/) { make $/.values[0].made; }
   method plot-errors-with-directive($/) {
-    my $err_type = 'true';
-    if $<errors-type> && $<errors-type>.trim eq 'absolute' { $err_type = 'false'  }
-    make 'obj = QRMonErrorsPlot( qrObj = obj, relativeErrorsQ = ' ~ $err_type ~ ')';
+    my $err_type = 'True';
+    if $<errors-type> && $<errors-type>.trim eq 'absolute' { $err_type = 'False'  }
+    make 'errors_plot( relative_errors = ' ~ $err_type ~ ')';
   }
 
   # Pipeline command
   method pipeline-command($/) { make $/.values[0].made; }
-  method take-pipeline-value($/) { make 'QRMonTakeValue( qrObj = obj )'; }
-  method echo-pipeline-value($/) { make 'QRMonEchoValue( qrObj = obj )'; }
+  method take-pipeline-value($/) { make 'take_value()'; }
+  method echo-pipeline-value($/) { make 'echo_value()'; }
 
-  method echo-command($/) { make 'obj = QRMonEcho( qrObj = obj, ' ~ $<echo-message-spec>.made ~ ' )'; }
+  method echo-command($/) { make 'echo( ' ~ $<echo-message-spec>.made ~ ' )'; }
   method echo-message-spec($/) { make $/.values[0].made; }
   method echo-words-list($/) { make '"' ~ $<variable-name>>>.made.join(' ') ~ '"'; }
   method echo-variable($/) { make $/.Str; }
@@ -190,6 +150,6 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon
 
   ## Setup code
   method setup-code-command($/) {
-    make 'SETUPCODE' => "print(\"Not implemented\")\n";
+    make 'SETUPCODE' => "from Regressionizer import *\n";
   }
 }
