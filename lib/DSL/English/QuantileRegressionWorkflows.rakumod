@@ -23,6 +23,7 @@ use DSL::English::QuantileRegressionWorkflows::Actions::Bulgarian::Standard;
 use DSL::English::QuantileRegressionWorkflows::Actions::English::Standard;
 use DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon;
 use DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon;
+use DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer;
 use DSL::English::QuantileRegressionWorkflows::Actions::Russian::Standard;
 use DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon;
 
@@ -34,6 +35,9 @@ my %targetToAction{Str} =
     "Python-Regressionizer" => DSL::English::QuantileRegressionWorkflows::Actions::Python::QRMon,
     "R"                     => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
     "R-QRMon"               => DSL::English::QuantileRegressionWorkflows::Actions::R::QRMon,
+    "Raku"                  => DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer,
+    "Raku-QRMon"            => DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer,
+    "Raku-Regressionaizer"  => DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer,
     "Russian"               => DSL::English::QuantileRegressionWorkflows::Actions::Russian::Standard,
     "Mathematica"           => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
     "WL"                    => DSL::English::QuantileRegressionWorkflows::Actions::WL::QRMon,
@@ -51,6 +55,9 @@ my Str %targetToSeparator{Str} =
     "Python"                => ".",
     "Python-QRMon"          => ".",
     "Python-Regressionizer" => ".",
+    "Raku-QRMon"            => ".",
+    "Raku"                  => ".",
+    "Raku-Regressionizer"   => ".",
     "Russian"               => "\n",
     "WL"                    => " \\[DoubleLongRightArrow]\n",
     "WL-QRMon"              => " \\[DoubleLongRightArrow]\n";
