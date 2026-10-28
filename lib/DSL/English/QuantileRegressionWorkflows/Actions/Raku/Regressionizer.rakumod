@@ -19,13 +19,13 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer
   method load-data($/) { make 'set-data(data = ' ~ $<data-location-spec>.made ~ ')'; }
   method data-location-spec($/) { make $<dataset-name>.made; }
   method use-qr-object($/) { make '$obj = ' ~ $<variable-name>.made; }
-  method use-dataset($/) { make '$obj = Regressionizer.new(' ~ $<variable-name>.made ~ ')'; }
+  method use-dataset($/) { make '$obj = Math::Regressionizer.new(' ~ $<variable-name>.made ~ ')'; }
   method dataset-name($/) { make $/.Str; }
 
   # Create commands
   method create-command($/) { make $/.values[0].made; }
-  method create-simple($/) { make '$obj = Regressionizer.new()'; }
-  method create-by-dataset($/) { make '$obj = Regressionizer.new( data => ' ~ $<dataset-name>.made ~ ')'; }
+  method create-simple($/) { make '$obj = Math::Regressionizer.new()'; }
+  method create-by-dataset($/) { make '$obj = Math::Regressionizer.new( data => ' ~ $<dataset-name>.made ~ ')'; }
 
   # Data transform command
   method data-transformation-command($/) { make $/.values[0].made; }
@@ -86,7 +86,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer
 
   method find-outliers-simple($/) {
     if $<compute-and-display><display-directive> {
-      make 'outliers().outliers_plot()';
+      make 'outliers().outliers-plot()';
     } else {
       make 'outliers()';
     }
@@ -94,7 +94,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer
 
   method find-type-outliers($/) {
     if $<compute-and-display><display-directive> {
-      make 'outliers().outliers_plot()';
+      make 'outliers().outliers-plot()';
     } else {
       make 'outliers()';
     }
@@ -102,7 +102,7 @@ class DSL::English::QuantileRegressionWorkflows::Actions::Raku::Regressionizer
 
   method find-outliers-spec($/) {
     if $<compute-and-display><display-directive> {
-      make 'outliers().outliers_plot()';
+      make 'outliers().outliers-plot()';
     } else {
       make 'outliers()';
     }
