@@ -1,0 +1,25 @@
+use v6.d;
+
+# use lib <. lib>;
+
+use DSL::English::QuantileRegressionWorkflows;
+
+use Test;
+
+plan *;
+
+multi toRegressionizer (Str $command ) {
+    return ToQuantileRegressionWorkflowCode( $command, 'Raku::Regressionizer' );
+}
+
+#-----------------------------------------------------------
+# For Math::Regressionizer
+#-----------------------------------------------------------
+
+## 1
+is
+        toRegressionizer('do quantile regression with 23 knots and order 2').subst(/\h/, :g),
+        'quantile-regression(knots=>23,order=>2)',
+        'quantile regression with 23 knots and order 2';
+
+done-testing;
