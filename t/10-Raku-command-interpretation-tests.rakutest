@@ -1,0 +1,55 @@
+use v6.d;
+
+# use lib <. lib>;
+
+use DSL::English::QuantileRegressionWorkflows;
+
+use Test;
+
+plan *;
+
+multi toRegressionizer (Str $command ) {
+    return ToQuantileRegressionWorkflowCode( $command, 'Raku::Regressionizer' );
+}
+
+#-----------------------------------------------------------
+# For Math::Regressionizer
+#-----------------------------------------------------------
+
+## 1
+is
+        toRegressionizer('rescale x axis').subst(/\h/, :g),
+        'rescale(:regressor)',
+        'rescale x axis';
+
+## 2
+is
+        toRegressionizer('rescale regressor axis').subst(/\h/, :g),
+        'rescale(:regressor)',
+        'rescale regressor axis';
+## 3
+is
+        toRegressionizer('rescale y axis').subst(/\h/, :g),
+        'rescale(:value)',
+        'rescale y axis';
+## 4
+is
+        toRegressionizer('rescale value axis').subst(/\h/, :g),
+        'rescale(:value)',
+        'rescale value axis';
+
+## 5
+is
+        toRegressionizer('rescale both axes').subst(/\h/, :g),
+        'rescale(:regressor,:value)',
+        'rescale both axes';
+
+## 6
+is
+        toRegressionizer('do quantile regression with 23 knots and interpolation order 2').subst(/\h/, :g),
+        'quantile-regression(knots=>23,order=>2)',
+        'quantile regression with 23 knots and order 2';
+
+
+
+done-testing;
