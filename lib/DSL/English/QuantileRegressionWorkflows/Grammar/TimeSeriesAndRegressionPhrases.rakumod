@@ -88,7 +88,7 @@ role DSL::English::QuantileRegressionWorkflows::Grammar::TimeSeriesAndRegression
     token moving-adjective:sym<English> { :i 'moving' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'moving', 2) }> }
 
     proto token order-noun {*}
-    token order-noun:sym<English> { :i 'order' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'order', 2) }> }
+    token order-noun:sym<English> { :i 'order' | ([\w]+) <?{ $0.Str ne 'over' && is-fuzzy-match($0.Str, 'order', 2) }> }
 
     proto token origin-noun {*}
     token origin-noun:sym<English> { :i 'origin' | ([\w]+) <?{ is-fuzzy-match($0.Str, 'origin', 2) }> }
