@@ -44,7 +44,7 @@ assign pipeline object to qrObj34;
 ');
 
 
-my @targets = <Python-QRMon R-QRMon WL-QRMon>;
+my @targets = <Python-QRMon R-QRMon Raku-Regressionizer WL-QRMon>;
 #my @targets = <Bulgarian English Russian>;
 
 for @commands -> $c {
